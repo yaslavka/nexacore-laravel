@@ -1,0 +1,225 @@
+/*
+ * ==========================================================================
+ *  NexaCore Workspace — admin panel stylesheet (THE ONLY admin CSS file).
+ * ==========================================================================
+ *  Rules for developers:
+ *    • ALL admin styles/classes live ONLY here (public/admin/css/index.css).
+ *    • Never add <style> blocks in Blade/Filament views — the Filament
+ *      panel ignores them. This file is linked once from
+ *      app/Providers/Filament/AdminPanelProvider.php (render hook).
+ *  The admin is permanently dark with yellow accents.
+ * ==========================================================================
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Design tokens                                                    */
+/* ------------------------------------------------------------------ */
+
+:root {
+    --nc-yellow: 250 204 21;              /* yellow-400  */
+    --nc-amber: 234 179 8;                /* amber-500   */
+    --nc-card-bg-top: #1c1a11;            /* warm dark   */
+    --nc-card-bg-bottom: #141309;
+    --nc-card-ring: rgb(234 179 8 / 0.16);
+    --nc-card-ring-hover: rgb(250 204 21 / 0.5);
+    --nc-card-radius: 0.9rem;
+    --nc-ink: rgb(41 30 3);               /* text on yellow */
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Always dark                                                      */
+/* ------------------------------------------------------------------ */
+
+/* Hide the light/dark switcher — the admin is always dark. */
+.fi-theme-switcher {
+    display: none !important;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Record cards — the proper card look                              */
+/*    (Filament content grid: .fi-ta-record inside .fi-ta-content-grid)*/
+/* ------------------------------------------------------------------ */
+
+.dark .fi-ta-content-grid > .fi-ta-record {
+    background: linear-gradient(
+        165deg,
+        var(--nc-card-bg-top),
+        var(--nc-card-bg-bottom)
+    ) !important;
+    border-radius: var(--nc-card-radius) !important;
+    /* Ring + soft elevation via box-shadow only (no layout shift). */
+    box-shadow:
+        0 0 0 1px var(--nc-card-ring),
+        0 16px 36px -26px rgb(0 0 0 / 0.95) !important;
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease !important;
+}
+
+/* Yellow accent line across the top of every card. */
+.dark .fi-ta-content-grid > .fi-ta-record::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    border-radius: var(--nc-card-radius) var(--nc-card-radius) 0 0;
+    background: linear-gradient(
+        90deg,
+        rgb(var(--nc-yellow) / 0.9),
+        rgb(var(--nc-amber) / 0.25) 45%,
+        transparent 80%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Hover: lift + yellow glow. */
+.dark .fi-ta-content-grid > .fi-ta-record:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 0 1px var(--nc-card-ring-hover),
+        0 20px 48px -22px rgb(var(--nc-amber) / 0.4),
+        0 16px 36px -26px rgb(0 0 0 / 1) !important;
+}
+
+/* Keep the record link from painting its own hover background. */
+.dark .fi-ta-content-grid > .fi-ta-record a:hover {
+    background: transparent;
+}
+
+/* Yellow halo for badges inside cards (theme, provider, mode). */
+.dark .fi-ta-content-grid .fi-badge {
+    border-radius: 9999px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Card footer — Edit / Delete buttons row                          */
+/* ------------------------------------------------------------------ */
+
+.dark .fi-ta-content-grid .fi-ta-actions {
+    border-top: 1px solid rgb(var(--nc-amber) / 0.12);
+    gap: 0.5rem !important;
+    padding-bottom: 0.25rem;
+}
+
+/* On phones the two bottom buttons stretch edge-to-edge. */
+@media (max-width: 639.98px) {
+    .dark .fi-ta-content-grid .fi-ta-actions > .fi-btn {
+        flex: 1 1 0 !important;
+        justify-content: center;
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Dropdown action groups (the "⋯" menu in the card corner)         */
+/* ------------------------------------------------------------------ */
+
+.dark .fi-dropdown-panel {
+    border: 1px solid rgb(var(--nc-amber) / 0.25) !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 20px 44px -18px rgb(0 0 0 / 0.9) !important;
+}
+
+.dark .fi-dropdown-list-item:hover {
+    background: rgb(var(--nc-amber) / 0.08) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 6. Contrast: dark text on filled yellow buttons / controls          */
+/*    (Filament renders white text on custom-500 backgrounds; on the  */
+/*    yellow palette that is unreadable, so flip it to dark brown.)   */
+/* ------------------------------------------------------------------ */
+
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"],
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] svg,
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] .fi-btn-icon,
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] .fi-checkbox-check,
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] .fi-btn-label {
+    color: var(--nc-ink) !important;
+}
+
+.dark .dark\:bg-custom-600[style*="--c-600:202, 138, 4"],
+.dark .dark\:bg-custom-600[style*="--c-600:202, 138, 4"] svg,
+.dark .dark\:bg-custom-600[style*="--c-600:202, 138, 4"] .fi-btn-icon {
+    color: rgb(255 251 235) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 7. Yellow-tinted scrollbars                                         */
+/* ------------------------------------------------------------------ */
+
+.fi-layout ::-webkit-scrollbar,
+.fi-body ::-webkit-scrollbar,
+html ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.fi-layout ::-webkit-scrollbar-track,
+.fi-body ::-webkit-scrollbar-track,
+html ::-webkit-scrollbar-track {
+    background: rgb(23 23 23 / 0.6);
+}
+
+.fi-layout ::-webkit-scrollbar-thumb,
+.fi-body ::-webkit-scrollbar-thumb,
+html ::-webkit-scrollbar-thumb {
+    background: rgb(var(--nc-amber) / 0.35);
+    border-radius: 9999px;
+    border: 2px transparent;
+    background-clip: content-box;
+}
+
+.fi-layout ::-webkit-scrollbar-thumb:hover,
+.fi-body ::-webkit-scrollbar-thumb:hover,
+html ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--nc-amber) / 0.6);
+    background-clip: content-box;
+}
+
+/* ------------------------------------------------------------------ */
+/* 8. Topbar, sidebar, pagination — subtle yellow framing              */
+/* ------------------------------------------------------------------ */
+
+.dark .fi-topbar {
+    border-bottom-color: rgb(var(--nc-amber) / 0.18) !important;
+}
+
+.fi-logo-filament-brand a:hover,
+.fi-topbar a:hover {
+    filter: drop-shadow(0 0 12px rgb(var(--nc-yellow) / 0.35));
+}
+
+.dark .fi-pagination a,
+.dark .fi-pagination button {
+    border-radius: 0.6rem;
+}
+
+.dark .fi-pagination a:hover,
+.dark .fi-pagination button:hover {
+    box-shadow: 0 0 0 1px rgb(var(--nc-amber) / 0.35);
+}
+
+/* ------------------------------------------------------------------ */
+/* 9. Forms: yellow focus rings                                        */
+/* ------------------------------------------------------------------ */
+
+.fi-input:focus,
+.fi-select:focus {
+    box-shadow: 0 0 0 2px rgb(var(--nc-yellow) / 0.35) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 10. Login screen — yellow-framed card                               */
+/* ------------------------------------------------------------------ */
+
+.dark .fi-simple-main {
+    border-radius: var(--nc-card-radius) !important;
+    box-shadow:
+        0 0 0 1px var(--nc-card-ring),
+        0 24px 60px -30px rgb(0 0 0 / 1) !important;
+}
