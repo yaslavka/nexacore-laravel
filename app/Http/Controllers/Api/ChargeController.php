@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\PaymentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 /**
@@ -27,7 +28,9 @@ class ChargeController extends Controller
             return response()->json(['error' => 'Invalid JSON body'], 400);
         }
 
-        $validated = validator($data, [
+        // An API endpoint always answers JSON, even when the client omits
+        // the Accept header (the default validation flow would redirect).
+        $validator = Validator::make($data, [
             'email' => ['required', 'email:rfc', 'max:254'],
             'name' => ['nullable', 'string', 'max:120'],
             'phone' => ['nullable', 'string', 'max:40'],
@@ -39,7 +42,16 @@ class ChargeController extends Controller
             'return_url_success' => ['nullable', 'url', 'max:1000'],
             'return_url_decline' => ['nullable', 'url', 'max:1000'],
             'metadata' => ['nullable', 'array'],
-        ])->validate();
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->first(),
+                'errors' => $validator->errors()->toArray(),
+            ], 422);
+        }
+
+        $validated = $validator->validated();
 
         $input = $validated + ['provider' => $provider];
 
