@@ -60,6 +60,12 @@ return [
             'singular' => 'Language',
             'plural' => 'Languages',
         ],
+
+        'companies' => [
+            'nav' => 'Companies',
+            'singular' => 'Company',
+            'plural' => 'Companies',
+        ],
     ],
 
     'pages' => [
@@ -89,20 +95,6 @@ return [
             'resolved' => 'Resolved active theme',
             'add' => 'Adding a theme',
             'add_hint' => 'Copy <code>themes/starter</code>, set a unique <code>slug</code> in <code>theme.json</code>, adjust <code>views/layout.blade.php</code> and assets, run <code>php artisan themes:list</code> — then select it here.',
-        ],
-
-        'settings' => [
-            'nav' => 'Settings',
-            'title' => 'Settings',
-            'save' => 'Save settings',
-            'saved' => 'Settings saved',
-            'no_perms' => 'Insufficient permissions',
-            'company' => 'Company',
-            'legal' => 'Legal texts',
-            'privacy' => 'Privacy text',
-            'terms' => 'Terms text',
-            'privacy_hint' => 'Optional custom privacy text.',
-            'terms_hint' => 'Optional custom terms text.',
         ],
 
         'language' => [
@@ -218,6 +210,27 @@ return [
         'default_changed' => 'Default language updated',
     
         'cannot_delete_default' => 'The default language cannot be deleted.',
+    ],
+
+    'companies' => [
+        'section_general' => 'General',
+        'section_legal' => 'Legal texts',
+        'privacy' => 'Privacy text',
+        'terms' => 'Terms text',
+        'privacy_hint' => 'Optional custom privacy text shown on the public site.',
+        'terms_hint' => 'Optional custom terms text shown on the public site.',
+        'is_default' => 'Primary company',
+        'is_default_hint' => 'The primary company is shown on the public website, in invoices and in GET /api/settings. There is always exactly one primary company.',
+        'badge_primary' => 'Primary',
+        'badge_secondary' => 'Additional',
+        'make_primary' => 'Make primary',
+        'make_primary_body' => '“:name” will be shown on the public website instead of the current primary company.',
+        'made_primary' => 'Company is now primary',
+        'made_primary_body' => '“:name” is now shown on the public website.',
+        'last_company' => 'At least one company must remain',
+        'created' => 'Company added',
+        'updated' => 'Company updated',
+        'deleted' => 'Company deleted',
     ],
 
     'payment_providers' => [
