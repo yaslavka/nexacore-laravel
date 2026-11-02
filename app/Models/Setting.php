@@ -9,7 +9,7 @@ class Setting extends Model
 {
     protected $fillable = [
         'company_name', 'tagline', 'email', 'phone', 'address',
-        'legal_entity', 'privacy_text', 'terms_text',
+        'legal_entity', 'privacy_text', 'terms_text', 'active_theme',
     ];
 
     public static function defaults(): array

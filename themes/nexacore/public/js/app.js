@@ -50,9 +50,10 @@ function bindLanguageSwitcher() {
   });
 }
 function paymentMarks() {
+  const ASSET_BASE = (document.body?.dataset.themeBase ?? '/themes/nexacore/');
   return `<div class="payment-marks" role="group" aria-label="${escape(t('paymentMethods'))}">
-    <img src="/assets/payments/visa.svg" alt="Visa" width="72" height="48">
-    <img src="/assets/payments/mastercard.svg" alt="Mastercard" width="72" height="48">
+    <img src="${ASSET_BASE}assets/payments/visa.svg" alt="Visa" width="72" height="48">
+    <img src="${ASSET_BASE}assets/payments/mastercard.svg" alt="Mastercard" width="72" height="48">
     <span class="payment-marks-slot">${escape(t('otherPaymentSystems'))}</span>
   </div>`;
 }

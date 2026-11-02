@@ -1,0 +1,12 @@
+{
+    "slug": "nexacore",
+    "name": "NexaCore Classic",
+    "version": "1.0.0",
+    "description": "Original 1:1 NexaCore design: animated single-page shell, catalog, secure checkout and full EN/RU/KY multilingual support.",
+    "author": "NexaCore LLC",
+    "locales": ["en", "ru", "ky"],
+    "preview": {
+        "accent": "#123A6E",
+        "layout": "spa-animated"
+    }
+}

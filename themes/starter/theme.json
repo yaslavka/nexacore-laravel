@@ -1,0 +1,12 @@
+{
+    "slug": "starter",
+    "name": "Starter Layout",
+    "version": "0.1.0",
+    "description": "Minimal static server-rendered layout. Use this folder as a template when adding new themes with alternative page structures.",
+    "author": "NexaCore",
+    "locales": ["en", "ru", "ky"],
+    "preview": {
+        "accent": "#0F766E",
+        "layout": "static-centered"
+    }
+}

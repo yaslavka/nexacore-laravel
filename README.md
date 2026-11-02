@@ -2,12 +2,63 @@
 
 Полный перенос проекта **nexaCore** на Laravel 12 (PHP 8.2): публичный сайт 1:1 (дизайн, страницы, стили, мультиязычность en/ru/ky) + админ-панель Filament с инструментами управления.
 
+**Дизайн вынесен в отдельную тему** (`themes/nexacore`). Система тем позволяет добавлять любое количество тем с различными вариантами вёрстки и переключать активную тему из админ-панели (`/admin` → System → Themes).
+
 ## Стек
 
 - **Laravel 12** (PHP 8.2+), SQLite (Eloquent)
 - **Filament 3** — админ-панель `/admin`
+- **Система тем** — каждая тема в отдельной папке со своими Blade-шаблонами и ассетами
 - Публичная часть — Blade-оболочка + оригинальные ассеты (styles.css, motion.css, app.js, i18n.js и т.д.), перенесённые 1:1
 - JSON API с тем же контрактом, что и в оригинальном Node-сервере
+
+## Система тем
+
+Структура каждой темы:
+
+```
+themes/
+├── nexacore/               # активная тема (1:1 дизайн оригинала)
+│   ├── theme.json          # манифест темы
+│   ├── views/              # Blade-шаблоны (layout.blade.php)
+│   └── public/             # ассеты → /themes/nexacore/…
+│       ├── css/            # styles.css, motion.css, admin.css
+│       ├── js/             # app.js, i18n.js, checkout.js, …
+│       └── assets/         # шрифты, favicon, платёжные иконки
+└── starter/                # шаблон для новых тем (статичная вёрстка)
+    ├── theme.json
+    ├── views/layout.blade.php
+    └── public/css/theme.css
+```
+
+Манифест `theme.json`:
+
+```json
+{
+    "slug": "nexacore",
+    "name": "NexaCore Classic",
+    "version": "1.0.0",
+    "description": "…",
+    "author": "…",
+    "locales": ["en", "ru", "ky"]
+}
+```
+
+**Как добавить новую тему:** скопируйте `themes/starter`, задайте уникальный `slug` в `theme.json`, измените `views/layout.blade.php` и ассеты. Тема появится в `/admin` → System → Themes и в `php artisan themes:list` — ядро менять не нужно.
+
+**Переключение темы:** админ-панель (`System → Themes`) или `settings.active_theme` в БД. Фолбэк: env `THEME_ACTIVE` → первый найденный манифест.
+
+**Хелперы (доступны в шаблонах темы):**
+
+- `theme()` — объект активной темы (`->name()`, `->version()`, `->slug()`)
+- `theme_view('layout', [...])` — рендер шаблона активной темы (namespace `{slug}::*`)
+- `theme_asset('css/styles.css')` — URL ассета активной темы (`/themes/{slug}/css/styles.css`)
+- `theme_asset('assets/favicon.svg', 'nexacore')` — ассет конкретной темы
+
+**Artisan-команды:**
+
+- `php artisan themes:list` — список найденных тем
+- `php artisan themes:publish [--force]` — публикация ассетов (`public/themes/{slug}` — симлинки; при недоступности symlink — копирование)
 
 ## Страницы (всё как в оригинале)
 
@@ -33,6 +84,7 @@
 - **Enquiries** — заявки: просмотр, статусы (new/in_progress/completed/cancelled), Export CSV, Backup JSON
 - **Payments** — платёжные ссылки (сумма согласуется владельцем), чекаут-ссылка
 - **Directions / Services** — редактирование каталога (EN-канонический + ru/ky оверлеи)
+- **Themes** — переключение активной темы сайта
 - **Settings** — данные компании, юридические тексты
 - **Audit log** — журнал действий
 
@@ -55,6 +107,7 @@ cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
 php artisan migrate --seed
+php artisan themes:publish
 php artisan serve   # или php -S 127.0.0.1:8090 -t public router.php
 ```
 
