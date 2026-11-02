@@ -15,6 +15,7 @@ return [
     'actions' => [
         'open_on_site' => 'Открыть на сайте',
         'more' => 'Ещё действия',
+        'replicate' => 'Дублировать',
     ],
 
     'resources' => [
@@ -43,6 +44,17 @@ return [
             'singular' => 'Событие аудита',
             'plural' => 'Журнал аудита',
         ],
+        'payment_providers' => [
+            'nav' => 'Платёжные системы',
+            'singular' => 'Платёжная система',
+            'plural' => 'Платёжные системы',
+        ],
+        'payment_merchants' => [
+            'nav' => 'Мерчанты',
+            'singular' => 'Мерчант',
+            'plural' => 'Мерчанты',
+        ],
+
         'languages' => [
             'nav' => 'Языки',
             'singular' => 'Язык',
@@ -207,6 +219,7 @@ return [
     ],
 
     'payment_merchants' => [
+        'singular' => 'Мерчант',
         'created' => 'Мерчант добавлен',
         'updated' => 'Мерчант обновлён',
         'deleted' => 'Мерчант удалён',

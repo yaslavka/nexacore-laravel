@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Modules\Payments\Contracts\PaymentGatewayException;
+use App\Services\PaymentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -47,7 +49,12 @@ class PaymentController extends Controller
         return response()->json(['payment' => $this->summary($payment)]);
     }
 
-    public function start(Request $request, string $token): JsonResponse
+    /**
+     * Start the payment: opens a session at the payment gateway (Payler
+     * module or any other registered module) and returns the hosted
+     * payment page URL. The frontend redirects the user to it.
+     */
+    public function start(Request $request, string $token, PaymentService $payments): JsonResponse
     {
         $payment = $this->findPayment($token);
         if (! $payment) {
@@ -59,19 +66,48 @@ class PaymentController extends Controller
             return response()->json(['error' => 'Please accept the offer and refund policy'], 400);
         }
 
-        // PSP (Payler) integration is planned next; until it is approved and configured
-        // card payments stay visibly unavailable.
-        return response()->json(['error' => 'Card payments are not configured'], 503);
+        if ($payment->isExpired() && $payment->status !== Payment::STATUS_PAID) {
+            $payment->forceFill(['status' => 'expired'])->save();
+
+            return response()->json(['error' => 'This payment link has expired'], 410);
+        }
+
+        try {
+            $result = $payments->startForPayment($payment);
+        } catch (PaymentGatewayException $e) {
+            return response()->json(['error' => $e->getMessage()], 502);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json(['error' => 'Payment session could not be created'], 502);
+        }
+
+        return response()->json([
+            'paymentUrl' => $result['paymentUrl'],
+            'mode' => $result['payment']->mode,
+        ]);
     }
 
-    public function status(string $token): JsonResponse
+    /**
+     * Payment status used by the checkout page while polling. When a
+     * gateway session exists and the payment is not final yet, the status
+     * is refreshed from the gateway first.
+     */
+    public function status(string $token, PaymentService $payments): JsonResponse
     {
         $payment = $this->findPayment($token);
         if (! $payment) {
             return response()->json(['error' => 'Payment link not found'], 404);
         }
 
-        // Without a connected PSP the stored status is the source of truth.
+        try {
+            if ($payment->provider_order_id && ! $payment->isTerminal()) {
+                $payments->syncStatus($payment);
+            }
+        } catch (\Throwable $e) {
+            report($e);
+        }
+
         return response()->json(['payment' => $this->summary($payment->refresh())]);
     }
 }

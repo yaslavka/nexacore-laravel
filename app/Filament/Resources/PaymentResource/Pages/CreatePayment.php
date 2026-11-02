@@ -41,13 +41,18 @@ class CreatePayment extends CreateRecord
         $amountMajor = (float) ($this->data['amount_major'] ?? 0);
         $amountMinor = (int) round($amountMajor * 100);
 
+        // Currency and mode follow the merchant bound to the active theme
+        // (the gateway session is opened through that merchant later).
+        $merchant = app(\App\Services\PaymentService::class)
+            ->resolveMerchant(null, \theme()->slug);
+
         $this->record = new Payment([
             'id' => bin2hex(random_bytes(32)),
             'order_id' => $order->id,
             'amount' => $amountMinor,
-            'currency' => 'USD',
+            'currency' => $merchant?->currency ?: config('payments.default_currency', 'USD'),
             'status' => 'created',
-            'mode' => config('services.payler.mode', 'off'),
+            'mode' => $merchant ? ($merchant->isSandbox() ? 'sandbox' : 'live') : 'off',
             'session_requested' => false,
             'payload' => [
                 'product' => Str::limit($order->service_title, 256),

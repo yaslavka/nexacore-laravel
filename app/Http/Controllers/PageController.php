@@ -57,12 +57,28 @@ class PageController extends Controller
         return $this->render($locale);
     }
 
+    /**
+     * The checkout page renders inside the theme the payment belongs to:
+     * a merchant is bound to a theme, so the payment determines it.
+     */
     public function checkout(string $locale, string $token): View
     {
-        return $this->render($locale, 'NexaCore — secure payment', 'Secure payment for your agreed NexaCore services.');
+        $payment = \App\Models\Payment::query()->find($token);
+        $themeSlug = $payment?->theme_slug;
+
+        $theme = $themeSlug ? theme_manager()->find($themeSlug) : null;
+
+        $locales = site_locales();
+
+        return theme_view('layout', [
+            'lang' => in_array($locale, $locales, true) ? $locale : default_site_locale(),
+            'title' => 'NexaCore — secure payment',
+            'description' => 'Secure payment for your agreed NexaCore services.',
+            'theme' => $theme ?? theme(),
+        ], $themeSlug);
     }
 
-    private function render(string $locale, ?string $title = null, ?string $description = null): View
+    private function render(string $locale, ?string $title = null, ?string $description = null, ?\App\Support\Themes\Theme $themeOverride = null): View
     {
         $locales = site_locales();
 
@@ -70,7 +86,7 @@ class PageController extends Controller
             'lang' => in_array($locale, $locales, true) ? $locale : default_site_locale(),
             'title' => $title ?? self::DEFAULT_TITLE,
             'description' => $description ?? self::DEFAULT_DESCRIPTION,
-            'theme' => theme(),
+            'theme' => $themeOverride ?? theme(),
         ]);
     }
 }

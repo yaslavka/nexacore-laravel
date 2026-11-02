@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\CatalogController;
+use App\Http\Controllers\Api\ChargeController;
+use App\Http\Controllers\Api\DemoGatewayController;
+use App\Http\Controllers\Api\GatewayCallbackController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\SettingsController;
@@ -23,3 +26,22 @@ Route::post('/payments/{token}/start', [PaymentController::class, 'start'])
 Route::post('/payments/{token}/status', [PaymentController::class, 'status'])
     ->where('token', '[a-f0-9]{64}')
     ->middleware('throttle:90,1');
+
+/*
+ * Payment modules (each payment system is a module):
+ *  - charge: API that creates the customer (auto password) and returns the
+ *    hosted payment form URL for the merchant bound to the requested theme;
+ *  - callback: gateway notifications (no signature — status is re-verified
+ *    with the gateway before applying).
+ */
+Route::post('/v1/payments/{provider}/charge', [ChargeController::class, 'store'])
+    ->where('provider', '[a-z0-9_-]+')
+    ->middleware(['throttle:30,1', App\Http\Middleware\VerifyPaymentsApiToken::class]);
+
+Route::post('/payments/{provider}/callback', GatewayCallbackController::class)
+    ->where('provider', '[a-z0-9_-]+')
+    ->middleware('throttle:120,1');
+
+// Completion endpoint of the simulated demo gateway page.
+Route::post('/payments/demo/complete', [DemoGatewayController::class, 'complete'])
+    ->middleware('throttle:30,1');

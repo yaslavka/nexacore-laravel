@@ -136,7 +136,7 @@ class PaymentResource extends Resource
                     ->color('danger')
                     ->visible(fn (): bool => auth()->user()?->canManageSettings() ?? false),
             ])
-            ->actionsAlignment(Alignment::End)
+            ->actionsAlignment(Alignment::End->value)
             ->contentGrid([
                 'default' => 1,
                 'sm' => 2,

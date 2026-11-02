@@ -55,6 +55,9 @@ export async function renderCheckout({ token, main, api, escape, icon, locale, h
     });
   }
   draw();
-  // A redirect or query parameter is never proof of payment.
-  if (payment.status !== 'created') await check();
+  // A redirect or query parameter is never proof of payment; the gateway
+  // (GetStatus) is always re-queried before the state is confirmed. When
+  // the user returns from the hosted page, re-check right away.
+  const outcome = new URLSearchParams(location.search).get('result');
+  if (outcome === 'success' || outcome === 'decline' || payment.status !== 'created') await check();
 }

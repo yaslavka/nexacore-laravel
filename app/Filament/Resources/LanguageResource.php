@@ -146,7 +146,7 @@ class LanguageResource extends Resource
                 EditAction::make()->button(),
                 DeleteAction::make()->button()->outlined()->color('danger'),
             ])
-            ->actionsAlignment(\Filament\Support\Enums\Alignment::End)
+            ->actionsAlignment(\Filament\Support\Enums\Alignment::End->value)
             ->emptyStateActions([
                 CreateAction::make(),
             ])

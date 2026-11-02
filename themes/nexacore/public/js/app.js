@@ -1,5 +1,5 @@
 import { initMotion, refreshMotion } from './motion.js';
-import { renderCheckout, stopCheckout } from './checkout.js?v=20261101-payler';
+import { renderCheckout, stopCheckout } from './checkout.js?v=20261102-payler';
 import { COMPANY, formatKgsAmount, formatUsdAmount } from './company.js';
 import { LEGAL_SLUGS, legalDoc } from './legal.js';
 import { LOCALES, LOCALE_META, companyAddress, detectLocale, getLocale, href, localizePath, packageLabel, parseRoute, pluralServices, setLocale, t } from './i18n.js';

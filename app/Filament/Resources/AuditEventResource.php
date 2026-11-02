@@ -93,7 +93,7 @@ class AuditEventResource extends Resource
                     ->dropdownPlacement('bottom-end')
                     ->tooltip(__('admin.actions.more')),
             ])
-            ->actionsAlignment(Alignment::End)
+            ->actionsAlignment(Alignment::End->value)
             ->contentGrid([
                 'default' => 1,
                 'sm' => 2,

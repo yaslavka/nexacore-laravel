@@ -15,6 +15,7 @@ return [
     'actions' => [
         'open_on_site' => 'Сайтта ачуу',
         'more' => 'Кошумча аракеттер',
+        'replicate' => 'Көчүрмө жасоо',
     ],
 
     'resources' => [
@@ -43,6 +44,17 @@ return [
             'singular' => 'Аудит окуясы',
             'plural' => 'Аудит журналы',
         ],
+        'payment_providers' => [
+            'nav' => 'Төлөм тутумдары',
+            'singular' => 'Төлөм тутуму',
+            'plural' => 'Төлөм тутумдары',
+        ],
+        'payment_merchants' => [
+            'nav' => 'Мерчанттар',
+            'singular' => 'Мерчант',
+            'plural' => 'Мерчанттар',
+        ],
+
         'languages' => [
             'nav' => 'Тилдер',
             'singular' => 'Тил',
@@ -207,6 +219,7 @@ return [
     ],
 
     'payment_merchants' => [
+        'singular' => 'Мерчант',
         'created' => 'Мерчант кошулду',
         'updated' => 'Мерчант жаңыртылды',
         'deleted' => 'Мерчант өчүрүлдү',

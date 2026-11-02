@@ -1,9 +1,22 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Web\DemoGatewayPageController;
 use App\Services\CatalogService;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
+
+/*
+ * Simulated hosted payment page of the built-in demo module
+ * (stands in for {gateway}/gpay/{session_id} of a real PSP).
+ */
+Route::get('/pay/demo/{token}', [DemoGatewayPageController::class, 'show'])
+    ->where('token', '[a-f0-9]{64}')
+    ->name('payments.demo.show');
+Route::post('/pay/demo/{token}/confirm', [DemoGatewayPageController::class, 'confirm'])
+    ->where('token', '[a-f0-9]{64}')
+    ->middleware('throttle:20,1')
+    ->name('payments.demo.confirm');
 
 /**
  * Public page routes are registered three times: for English (no prefix),

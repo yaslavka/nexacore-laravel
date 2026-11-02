@@ -118,7 +118,50 @@ php artisan serve   # или php -S 127.0.0.1:8090 -t public router.php
 
 Цены показываются в USD и KGS при `1 USD = 87.5 KGS` (как в оригинале). Цены предварительные, без налогов и комиссий.
 
+## Платёжные модули (Payler первым)
+
+Каждая платёжная система — отдельный модуль в `app/Modules/Payments/Drivers/`, реализующий контракт
+`App\Modules\Payments\Contracts\PaymentModule`. Реестр модулей — `config/payments.php` (`drivers`).
+Новая платёжная система добавляется новым классом-модулем + записью в реестре, без изменения ядра.
+
+Мерчанты (`payment_merchants`) привязаны к темам сайта: у одной платёжной системы может быть
+сколько угодно мерчантов, и для каждой темы выбирается свой активный мерчант (или мерчант
+с темой `*` — «любая тема»). Тема определяется и на вебе (активная тема), и в API (поле `theme`).
+
+### Схема Payler Gate (docs.payler.com/ru-api)
+
+1. `POST {host}/gapi/StartSession` (form-urlencoded) → `{order_id, amount, session_id}`
+2. Пользователь перенаправляется на `GET {host}/gapi/Pay?session_id=…` (PayGate)
+3. После оплаты Payler шлёт гарантированное уведомление (callback) `POST order_id` на URL из
+   личного кабинета; статус всегда перепроверяется через `POST {host}/gapi/GetStatus`
+   (`Charged` → оплачен).
+
+### API вызов платёжной системы
+
+```
+POST /api/v1/payments/{provider}/charge        # provider = payler | demo | …
+X-Api-Key: <PAYMENTS_API_TOKEN>                # если задан в .env
+{
+  "email": "client@example.com",               // пользователь создаётся автоматически
+  "name":  "Имя клиента",
+  "amount": 15000,                             // в минорных единицах (тыйын/копейки)
+  "currency": "KGS",
+  "product": "Описание платежа",
+  "theme": "nexacore"                          // по теме выбирается мерчант
+}
+→ 201 {
+  "customer": { "id": "…", "email": "…", "created": true, "password": "<автогенерированный>" },
+  "payment":  { "id": "…", "amount": 15000, "currency": "KGS", "status": "created" },
+  "paymentUrl": "https://sandbox.payler.com/gapi/Pay?session_id=…"   // ссылка на форму оплаты
+}
+```
+
+Пароль пользователя генерируется автоматически, отправляется пользователю письмом
+и возвращается в ответе API один раз. Уведомление шлюза принимается на
+`POST /api/payments/{provider}/callback` и всегда перепроверяется через GetStatus.
+
+Sandbox-режим включается на уровне мерчанта (`mode = test`, host `sandbox.payler.com`).
+
 ## Что дальше
 
-- Подключение PSP (Payler Gate): sandbox/live режимы, вебхук `/api/payler/callback`, сверка платежей
 - Email-уведомления по заявкам (нужен SMTP-аккаунт)

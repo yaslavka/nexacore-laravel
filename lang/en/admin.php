@@ -15,6 +15,7 @@ return [
     'actions' => [
         'open_on_site' => 'Open on website',
         'more' => 'More actions',
+        'replicate' => 'Duplicate',
     ],
 
     'resources' => [
@@ -43,6 +44,17 @@ return [
             'singular' => 'Audit event',
             'plural' => 'Audit log',
         ],
+        'payment_providers' => [
+            'nav' => 'Payment systems',
+            'singular' => 'Payment system',
+            'plural' => 'Payment systems',
+        ],
+        'payment_merchants' => [
+            'nav' => 'Merchants',
+            'singular' => 'Merchant',
+            'plural' => 'Merchants',
+        ],
+
         'languages' => [
             'nav' => 'Languages',
             'singular' => 'Language',
@@ -207,6 +219,7 @@ return [
     ],
 
     'payment_merchants' => [
+        'singular' => 'Merchant',
         'created' => 'Merchant added',
         'updated' => 'Merchant updated',
         'deleted' => 'Merchant deleted',
