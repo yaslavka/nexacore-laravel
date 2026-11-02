@@ -8,8 +8,28 @@ use Throwable;
 
 class ThemeServiceProvider extends ServiceProvider
 {
+    /**
+     * Helper files registered in composer.json "autoload.files". They are
+     * re-required here defensively: on machines with a stale composer
+     * autoloader (e.g. after `git pull` without `composer dump-autoload`)
+     * the Filament panel would otherwise fail with
+     * "Call to undefined function theme_asset()".
+     */
+    protected array $helperFiles = [
+        'Support/Themes/helpers.php',
+        'Support/Localization/helpers.php',
+    ];
+
     public function register(): void
     {
+        foreach ($this->helperFiles as $helper) {
+            $path = app_path($helper);
+
+            if (is_file($path)) {
+                require_once $path;
+            }
+        }
+
         $this->app->singleton(ThemeManager::class);
     }
 
