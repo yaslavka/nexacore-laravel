@@ -1,0 +1,2516 @@
+{
+  "categories": [
+    {
+      "id": "software",
+      "number": "01",
+      "title": "Software Development",
+      "shortTitle": "Software",
+      "description": "Software built around your business, from corporate websites to internal systems.",
+      "icon": "code",
+      "services": [
+        {
+          "id": "1-1",
+          "title": "Corporate Websites",
+          "price": 800,
+          "priceLabel": "From $800",
+          "period": "",
+          "description": "A website that introduces your company and helps prospective clients get in touch.",
+          "deliverables": [
+            "Page structure",
+            "Responsive pages",
+            "Contact form"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 800
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-2",
+          "title": "Web Portals & Applications",
+          "price": 2500,
+          "priceLabel": "From $2,500",
+          "period": "",
+          "description": "A web product with user accounts and workflows tailored to your audience.",
+          "deliverables": [
+            "User journey map",
+            "Interfaces and backend logic",
+            "Core workflow testing"
+          ],
+          "duration": "4–10 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 2500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-3",
+          "title": "iOS & Android Apps",
+          "price": 5000,
+          "priceLabel": "From $5,000",
+          "period": "",
+          "description": "A mobile product for iOS and Android with an agreed set of features.",
+          "deliverables": [
+            "Screen prototypes",
+            "App development",
+            "Release preparation"
+          ],
+          "duration": "8–16 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 5000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-4",
+          "title": "CRM Systems",
+          "price": 3500,
+          "priceLabel": "From $3,500",
+          "period": "",
+          "description": "A system for managing customers, deals and your sales team's work.",
+          "deliverables": [
+            "Sales pipeline and customer records",
+            "Staff roles",
+            "Deal reports"
+          ],
+          "duration": "4–8 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 3500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-5",
+          "title": "ERP Systems",
+          "price": 7000,
+          "priceLabel": "From $7,000",
+          "period": "",
+          "description": "An integrated system for the agreed areas of your company's operations.",
+          "deliverables": [
+            "Process map",
+            "Operational modules",
+            "Data exchange between modules"
+          ],
+          "duration": "8–16 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 7000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-6",
+          "title": "Accounting & Management Software",
+          "price": 2500,
+          "priceLabel": "From $2,500",
+          "period": "",
+          "description": "Software for agreed financial accounting or management reporting tasks.",
+          "deliverables": [
+            "Data model",
+            "Accounting workflows",
+            "Reporting templates"
+          ],
+          "duration": "4–8 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 2500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-7",
+          "title": "Warehouse Management Systems",
+          "price": 2000,
+          "priceLabel": "From $2,000",
+          "period": "",
+          "description": "Track inventory and stock movements around the way your warehouse operates.",
+          "deliverables": [
+            "Product directory",
+            "Stock receipts and adjustments",
+            "Inventory reports"
+          ],
+          "duration": "3–6 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 2000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-8",
+          "title": "Online Ordering Platforms",
+          "price": 3000,
+          "priceLabel": "From $3,000",
+          "period": "",
+          "description": "A service for receiving and processing orders online.",
+          "deliverables": [
+            "Product or service catalogue",
+            "Order placement",
+            "Status management"
+          ],
+          "duration": "4–8 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 3000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-9",
+          "title": "Software Modernization",
+          "price": 500,
+          "priceLabel": "From $500",
+          "period": "",
+          "description": "Improve an existing product within an agreed scope and its technical constraints.",
+          "deliverables": [
+            "Current solution assessment",
+            "Agreed improvements",
+            "Regression checks"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "1-10",
+          "title": "Technical Support",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Support for your software product within agreed service boundaries.",
+          "deliverables": [
+            "Request assessment",
+            "Agreed bug fixes",
+            "Work reports"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "number": "02",
+      "title": "IT Services & Cloud Technology",
+      "shortTitle": "IT & Cloud",
+      "description": "Integrations, data and cloud tools for everyday business operations.",
+      "icon": "cloud",
+      "services": [
+        {
+          "id": "2-1",
+          "title": "SaaS Services",
+          "price": 49,
+          "priceLabel": "From $49/month",
+          "period": "/month",
+          "description": "Access to a selected SaaS service on an agreed subscription plan.",
+          "deliverables": [
+            "Plan selection",
+            "Access setup",
+            "Getting-started guide"
+          ],
+          "duration": "1–5 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 49
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "2-2",
+          "title": "Business Process Automation",
+          "price": 800,
+          "priceLabel": "From $800",
+          "period": "",
+          "description": "Automate repetitive operations across teams and systems.",
+          "deliverables": [
+            "Process diagram",
+            "Automated workflows",
+            "Error handling checks"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 800
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "2-3",
+          "title": "Enterprise System Configuration",
+          "price": 1000,
+          "priceLabel": "From $1,000",
+          "period": "",
+          "description": "Configure enterprise software around your employees' working needs.",
+          "deliverables": [
+            "System configuration",
+            "Roles and permissions",
+            "Team instructions"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "2-4",
+          "title": "Data Storage & Processing",
+          "price": 500,
+          "priceLabel": "From $500",
+          "period": "",
+          "description": "Organize storage and processing for agreed datasets.",
+          "deliverables": [
+            "Storage design",
+            "Data loading and processing",
+            "Access rules"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "2-5",
+          "title": "API Integrations",
+          "price": 400,
+          "priceLabel": "From $400",
+          "period": "",
+          "description": "Connect services and exchange data through available APIs.",
+          "deliverables": [
+            "Integration design",
+            "Connection setup",
+            "Error and retry checks"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 400
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "2-6",
+          "title": "Analytics Dashboards",
+          "price": 600,
+          "priceLabel": "From $600",
+          "period": "",
+          "description": "Dashboards for monitoring the metrics that matter to your business.",
+          "deliverables": [
+            "Metric definitions",
+            "Data source connections",
+            "Interactive reports"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 600
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "2-7",
+          "title": "Electronic Document Management",
+          "price": 700,
+          "priceLabel": "From $700",
+          "period": "",
+          "description": "Digital workflows for creating, approving and storing documents.",
+          "deliverables": [
+            "Document templates",
+            "Approval workflows",
+            "Access configuration"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 700
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "2-8",
+          "title": "Remote IT Support",
+          "price": 150,
+          "priceLabel": "From $150/month",
+          "period": "/month",
+          "description": "Remote help with agreed IT systems through a subscription.",
+          "deliverables": [
+            "Support requests",
+            "Remote diagnostics",
+            "Request reports"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "number": "03",
+      "title": "Artificial Intelligence",
+      "shortTitle": "AI Solutions",
+      "description": "AI tools for working with information, customer requests and repetitive tasks.",
+      "icon": "sparkles",
+      "services": [
+        {
+          "id": "3-1",
+          "title": "AI Chatbots",
+          "price": 700,
+          "priceLabel": "From $700",
+          "period": "",
+          "description": "A chatbot that answers common questions using your materials.",
+          "deliverables": [
+            "Conversation flows",
+            "Knowledge base",
+            "Response testing"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 700
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-2",
+          "title": "Virtual Assistants",
+          "price": 1000,
+          "priceLabel": "From $1,000",
+          "period": "",
+          "description": "An AI assistant for agreed information and productivity tasks.",
+          "deliverables": [
+            "Task definitions",
+            "Source connections",
+            "Response quality checks"
+          ],
+          "duration": "3–5 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-3",
+          "title": "Customer Support Automation",
+          "price": 1200,
+          "priceLabel": "From $1,200",
+          "period": "",
+          "description": "Help your support team categorize requests and draft responses.",
+          "deliverables": [
+            "Request classification",
+            "Suggested responses",
+            "Human handoff"
+          ],
+          "duration": "3–6 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-4",
+          "title": "Document Processing",
+          "price": 900,
+          "priceLabel": "From $900",
+          "period": "",
+          "description": "Extract and structure information from agreed document types.",
+          "deliverables": [
+            "Extraction templates",
+            "Document processing",
+            "Human review of results"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 900
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-5",
+          "title": "Business Data Analysis",
+          "price": 1200,
+          "priceLabel": "From $1,200",
+          "period": "",
+          "description": "Analyze commercial data and produce findings that can be checked.",
+          "deliverables": [
+            "Data preparation",
+            "Analysis workflows",
+            "Report with limitations"
+          ],
+          "duration": "3–5 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-6",
+          "title": "AI for Sales & Marketing",
+          "price": 1200,
+          "priceLabel": "From $1,200",
+          "period": "",
+          "description": "AI tools for agreed sales tasks and marketing content preparation.",
+          "deliverables": [
+            "Task mapping",
+            "Templates and workflows",
+            "Result evaluation"
+          ],
+          "duration": "3–5 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-7",
+          "title": "Intelligent Search",
+          "price": 1000,
+          "priceLabel": "From $1,000",
+          "period": "",
+          "description": "Search internal materials based on the meaning of a user's query.",
+          "deliverables": [
+            "Content indexing",
+            "Search interface",
+            "Relevance testing"
+          ],
+          "duration": "2–5 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-8",
+          "title": "AI Model Integration",
+          "price": 1000,
+          "priceLabel": "From $1,000",
+          "period": "",
+          "description": "Connect a selected AI model to an existing product or process.",
+          "deliverables": [
+            "Integration approach",
+            "API connection",
+            "Error and cost controls"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-9",
+          "title": "AI Agents",
+          "price": 2000,
+          "priceLabel": "From $2,000",
+          "period": "",
+          "description": "An AI agent with a limited set of tools for an agreed workflow.",
+          "deliverables": [
+            "Permission boundaries",
+            "Tool connections",
+            "Action and boundary testing"
+          ],
+          "duration": "4–8 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 2000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "3-10",
+          "title": "Order Processing",
+          "price": 900,
+          "priceLabel": "From $900",
+          "period": "",
+          "description": "An AI assistant that structures incoming orders and prepares them for processing.",
+          "deliverables": [
+            "Input parsing",
+            "Required field checks",
+            "Order transfer to your system"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 900
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "it-consulting",
+      "number": "04",
+      "title": "IT Consulting",
+      "shortTitle": "IT Consulting",
+      "description": "Guidance on technology choices, infrastructure assessments and IT project planning.",
+      "icon": "terminal",
+      "services": [
+        {
+          "id": "4-1",
+          "title": "IT Audits",
+          "price": 400,
+          "priceLabel": "From $400",
+          "period": "",
+          "description": "Review your IT systems and prioritize improvements based on identified issues.",
+          "deliverables": [
+            "System inventory",
+            "Current state assessment",
+            "Recommendation roadmap"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 400
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "4-2",
+          "title": "Software Selection",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Compare software options against your requirements, constraints and budget.",
+          "deliverables": [
+            "Requirements gathering",
+            "Option comparison",
+            "Selection recommendation"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "4-3",
+          "title": "Technical Specifications",
+          "price": 350,
+          "priceLabel": "From $350",
+          "period": "",
+          "description": "A document defining requirements, project boundaries and acceptance criteria.",
+          "deliverables": [
+            "User scenarios",
+            "Functional requirements",
+            "Verification criteria"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 350
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "4-4",
+          "title": "Digital Transformation Strategy",
+          "price": 700,
+          "priceLabel": "From $700",
+          "period": "",
+          "description": "A phased plan for introducing digital tools across your business.",
+          "deliverables": [
+            "Current process analysis",
+            "Initiative priorities",
+            "Implementation roadmap"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 700
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "4-5",
+          "title": "CRM & ERP Implementation",
+          "price": 600,
+          "priceLabel": "From $600",
+          "period": "",
+          "description": "Prepare and configure your chosen CRM or ERP for agreed processes.",
+          "deliverables": [
+            "Implementation plan",
+            "Module configuration",
+            "Staff onboarding"
+          ],
+          "duration": "2–6 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 600
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "4-6",
+          "title": "IT Infrastructure Assessment",
+          "price": 450,
+          "priceLabel": "From $450",
+          "period": "",
+          "description": "Assess your infrastructure's composition and condition to plan changes.",
+          "deliverables": [
+            "Infrastructure map",
+            "Constraint assessment",
+            "Development recommendations"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 450
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "4-7",
+          "title": "IT Project Management",
+          "price": 500,
+          "priceLabel": "From $500",
+          "period": "",
+          "description": "Organize an IT project with clear milestones and responsibilities.",
+          "deliverables": [
+            "Work plan",
+            "Participant coordination",
+            "Status reports"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "number": "05",
+      "title": "Business Consulting",
+      "shortTitle": "Business Consulting",
+      "description": "Research and practical plans to grow your business and improve operations.",
+      "icon": "chart",
+      "services": [
+        {
+          "id": "5-1",
+          "title": "Business Development",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Explore your current situation and potential directions for growth.",
+          "deliverables": [
+            "Discovery session",
+            "Opportunity map",
+            "Next-step plan"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "5-2",
+          "title": "Business Strategy",
+          "price": 600,
+          "priceLabel": "From $600",
+          "period": "",
+          "description": "A growth strategy with selected priorities and implementation conditions.",
+          "deliverables": [
+            "Baseline analysis",
+            "Strategic options",
+            "Implementation plan"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 600
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "5-3",
+          "title": "Market & Competitor Analysis",
+          "price": 400,
+          "priceLabel": "From $400",
+          "period": "",
+          "description": "Research a selected market and competitor offerings using available data.",
+          "deliverables": [
+            "Research scope",
+            "Competitor comparison",
+            "Findings and sources"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 400
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "5-4",
+          "title": "Process Optimization",
+          "price": 450,
+          "priceLabel": "From $450",
+          "period": "",
+          "description": "Identify bottlenecks in business processes and propose practical changes.",
+          "deliverables": [
+            "Process documentation",
+            "Issue map",
+            "Improvement recommendations"
+          ],
+          "duration": "2–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 450
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "5-5",
+          "title": "Commercial Strategy",
+          "price": 500,
+          "priceLabel": "From $500",
+          "period": "",
+          "description": "A sales development plan focused on customers, your offering and channels.",
+          "deliverables": [
+            "Customer segments",
+            "Offering model",
+            "Commercial action plan"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "5-6",
+          "title": "International Business Consulting",
+          "price": 250,
+          "priceLabel": "From $250",
+          "period": "",
+          "description": "Explore business challenges in selected international markets.",
+          "deliverables": [
+            "Target market overview",
+            "Operational considerations",
+            "Further assessment plan"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 250
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "5-7",
+          "title": "Enterprise Development",
+          "price": 400,
+          "priceLabel": "From $400",
+          "period": "",
+          "description": "A development plan that accounts for your enterprise's resources and constraints.",
+          "deliverables": [
+            "Current situation assessment",
+            "Development options",
+            "Prioritized action plan"
+          ],
+          "duration": "2–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 400
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "number": "06",
+      "title": "Business Plans & Financial Analysis",
+      "shortTitle": "Business & Finance",
+      "description": "Financial models, economic analysis and feasibility assessments for new ventures.",
+      "icon": "calculator",
+      "services": [
+        {
+          "id": "6-1",
+          "title": "Business Plans",
+          "price": 350,
+          "priceLabel": "From $350",
+          "period": "",
+          "description": "A business plan to evaluate an idea and organize project delivery.",
+          "deliverables": [
+            "Project description",
+            "Operating plan",
+            "Baseline financial calculations"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 350
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "6-2",
+          "title": "Investment Business Plans",
+          "price": 650,
+          "priceLabel": "From $650",
+          "period": "",
+          "description": "A business plan covering investment needs and development scenarios.",
+          "deliverables": [
+            "Investment plan",
+            "Financial scenarios",
+            "Investor discussion materials"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 650
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "6-3",
+          "title": "Profitability Analysis",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Calculate profitability for a product or business area using your data.",
+          "deliverables": [
+            "Cost and revenue inputs",
+            "Profitability calculations",
+            "Sensitivity analysis"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "6-4",
+          "title": "Financial Models",
+          "price": 450,
+          "priceLabel": "From $450",
+          "period": "",
+          "description": "An editable model of financial performance with explicit assumptions.",
+          "deliverables": [
+            "Input assumptions",
+            "Revenue and expense forecasts",
+            "Scenario calculations"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 450
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "6-5",
+          "title": "Investment Payback Analysis",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Estimate a project's payback period using agreed assumptions.",
+          "deliverables": [
+            "Investment profile",
+            "Cash flow forecast",
+            "Payback scenarios"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "6-6",
+          "title": "Feasibility Studies",
+          "price": 900,
+          "priceLabel": "From $900",
+          "period": "",
+          "description": "A technical and economic assessment of a selected project approach.",
+          "deliverables": [
+            "Technical assumptions",
+            "Economic calculations",
+            "Option comparison"
+          ],
+          "duration": "3–5 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 900
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "6-7",
+          "title": "Startup Business Models",
+          "price": 450,
+          "priceLabel": "From $450",
+          "period": "",
+          "description": "Define a startup's business model and the hypotheses to validate.",
+          "deliverables": [
+            "Value proposition",
+            "Revenue and cost structure",
+            "Validation plan"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 450
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "6-8",
+          "title": "Commercial Concepts",
+          "price": 350,
+          "priceLabel": "From $350",
+          "period": "",
+          "description": "Develop an offering concept for a selected customer audience.",
+          "deliverables": [
+            "Audience profile",
+            "Offering structure",
+            "Demand validation plan"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 350
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "management",
+      "number": "07",
+      "title": "Business & Project Support",
+      "shortTitle": "Project Support",
+      "description": "Coordination of people, documents and milestones across business projects.",
+      "icon": "briefcase",
+      "services": [
+        {
+          "id": "7-1",
+          "title": "Organizational Support",
+          "price": 300,
+          "priceLabel": "From $300",
+          "period": "",
+          "description": "Help organize meetings, tasks and information sharing.",
+          "deliverables": [
+            "Task register",
+            "Meeting schedule",
+            "Decision records"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 300
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "7-2",
+          "title": "Project Coordination",
+          "price": 600,
+          "priceLabel": "From $600",
+          "period": "",
+          "description": "Coordinate project milestones and collaboration between participants.",
+          "deliverables": [
+            "Milestone plan",
+            "Responsibility allocation",
+            "Progress reports"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 600
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "7-3",
+          "title": "Commercial Documentation",
+          "price": 100,
+          "priceLabel": "From $100",
+          "period": "",
+          "description": "Prepare agreed commercial documents and reusable templates.",
+          "deliverables": [
+            "Document structure",
+            "Draft content",
+            "Editable templates"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 100
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "7-4",
+          "title": "Investor Information Support",
+          "price": 350,
+          "priceLabel": "From $350",
+          "period": "",
+          "description": "Prepare project progress materials for investors.",
+          "deliverables": [
+            "Project data collection",
+            "Status materials",
+            "Open question register"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 350
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "7-5",
+          "title": "Contractor Coordination",
+          "price": 250,
+          "priceLabel": "From $250",
+          "period": "",
+          "description": "Coordinate contractors around an agreed work plan.",
+          "deliverables": [
+            "Task schedule",
+            "Dependency tracking",
+            "Status summaries"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 250
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "7-6",
+          "title": "Remote Process Support",
+          "price": 250,
+          "priceLabel": "From $250",
+          "period": "",
+          "description": "Remote support for agreed operational processes.",
+          "deliverables": [
+            "Communication procedures",
+            "Task tracking",
+            "Periodic reports"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 250
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "7-7",
+          "title": "Project Monitoring",
+          "price": 200,
+          "priceLabel": "From $200",
+          "period": "",
+          "description": "Monitor project timelines, status and risks.",
+          "deliverables": [
+            "Monitoring metrics",
+            "Status collection",
+            "Variance reports"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "number": "08",
+      "title": "Manufacturing & Engineering Consulting",
+      "shortTitle": "Engineering",
+      "description": "Production process analysis and recommendations for engineering infrastructure.",
+      "icon": "settings",
+      "services": [
+        {
+          "id": "8-1",
+          "title": "Production Planning & Organization",
+          "price": 500,
+          "priceLabel": "From $500",
+          "period": "",
+          "description": "Recommendations for organizing production based on your input data.",
+          "deliverables": [
+            "Production flow",
+            "Resource requirements",
+            "Operational plan"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "8-2",
+          "title": "Efficiency Analysis",
+          "price": 450,
+          "priceLabel": "From $450",
+          "period": "",
+          "description": "Assess the efficiency of a production unit or process.",
+          "deliverables": [
+            "Performance data collection",
+            "Loss analysis",
+            "Improvement priorities"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 450
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "8-3",
+          "title": "Modernization Recommendations",
+          "price": 400,
+          "priceLabel": "From $400",
+          "period": "",
+          "description": "Explore modernization options with their assumptions and constraints.",
+          "deliverables": [
+            "Current state analysis",
+            "Option comparison",
+            "Further development plan"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 400
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "8-4",
+          "title": "Technical Maintenance",
+          "price": 300,
+          "priceLabel": "From $300",
+          "period": "",
+          "description": "Prepare and support agreed technical maintenance tasks.",
+          "deliverables": [
+            "Equipment inventory",
+            "Maintenance plan",
+            "Completed work records"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 300
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "8-5",
+          "title": "Process Optimization",
+          "price": 450,
+          "priceLabel": "From $450",
+          "period": "",
+          "description": "Analyze production operations and prepare improvement proposals.",
+          "deliverables": [
+            "Operations map",
+            "Constraint analysis",
+            "Change recommendations"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 450
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "8-6",
+          "title": "Technical Analytics",
+          "price": 350,
+          "priceLabel": "From $350",
+          "period": "",
+          "description": "Analyze technical data to support engineering decisions.",
+          "deliverables": [
+            "Input data preparation",
+            "Calculations and comparisons",
+            "Technical report"
+          ],
+          "duration": "1–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 350
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "8-7",
+          "title": "Engineering Systems Management",
+          "price": 400,
+          "priceLabel": "From $400",
+          "period": "",
+          "description": "Organize the tracking and monitoring of agreed engineering systems.",
+          "deliverables": [
+            "System register",
+            "Monitoring procedures",
+            "Condition metrics"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 400
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marketing",
+      "number": "09",
+      "title": "Digital Marketing & Advertising",
+      "shortTitle": "Digital Marketing",
+      "description": "Advertising campaigns, content and analytics for your digital channels.",
+      "icon": "megaphone",
+      "services": [
+        {
+          "id": "9-1",
+          "title": "Google Ads",
+          "price": 250,
+          "priceLabel": "From $250",
+          "period": "",
+          "description": "Prepare and configure a Google Ads campaign around an agreed objective.",
+          "deliverables": [
+            "Campaign structure",
+            "Ads and audiences",
+            "Measurement setup"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 250
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-2",
+          "title": "Social Media Promotion",
+          "price": 250,
+          "priceLabel": "From $250",
+          "period": "",
+          "description": "A plan and materials for promotion across selected social channels.",
+          "deliverables": [
+            "Audience analysis",
+            "Promotion plan",
+            "Content recommendations"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 250
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-3",
+          "title": "SEO",
+          "price": 300,
+          "priceLabel": "From $300",
+          "period": "",
+          "description": "Search optimization work for an agreed area of your website.",
+          "deliverables": [
+            "Baseline audit",
+            "Optimization priorities",
+            "Measurement plan"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 300
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-4",
+          "title": "LinkedIn / Facebook / Instagram Advertising",
+          "price": 300,
+          "priceLabel": "From $300",
+          "period": "",
+          "description": "Set up advertising campaigns on selected available platforms.",
+          "deliverables": [
+            "Audiences and goals",
+            "Ad creative",
+            "Analytics settings"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 300
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-5",
+          "title": "Marketing Strategy",
+          "price": 450,
+          "priceLabel": "From $450",
+          "period": "",
+          "description": "A marketing plan based on your audience, product and available resources.",
+          "deliverables": [
+            "Audience research",
+            "Channel selection",
+            "Action and measurement plan"
+          ],
+          "duration": "2–3 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 450
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-6",
+          "title": "Advertising Materials",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Create advertising materials in agreed formats.",
+          "deliverables": [
+            "Creative concept",
+            "Design layouts",
+            "Platform-ready exports"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-7",
+          "title": "Digital Content",
+          "price": 200,
+          "priceLabel": "From $200",
+          "period": "",
+          "description": "Content for agreed digital channels and formats.",
+          "deliverables": [
+            "Content plan",
+            "Content production",
+            "Editing and adaptation"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-8",
+          "title": "Advertising Analytics",
+          "price": 200,
+          "priceLabel": "From $200",
+          "period": "",
+          "description": "Analyze campaign results with clear data sources and limitations.",
+          "deliverables": [
+            "Measurement checks",
+            "Campaign report",
+            "Optimization recommendations"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "9-9",
+          "title": "Social Media Management",
+          "price": 250,
+          "priceLabel": "From $250",
+          "period": "",
+          "description": "Prepare and publish content on an agreed schedule.",
+          "deliverables": [
+            "Editorial plan",
+            "Publication materials",
+            "Activity report"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 250
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "number": "10",
+      "title": "Training & Remote Consulting",
+      "shortTitle": "Training",
+      "description": "Practical technology training and consulting for teams and entrepreneurs.",
+      "icon": "graduation",
+      "services": [
+        {
+          "id": "10-1",
+          "title": "Programming Courses",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Practical lessons for your chosen language and experience level.",
+          "deliverables": [
+            "Learning plan",
+            "Practical assignments",
+            "Assignment feedback"
+          ],
+          "duration": "Schedule to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "10-2",
+          "title": "AI Training",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Learn to apply AI tools to agreed workplace tasks.",
+          "deliverables": [
+            "Course programme",
+            "Practical scenarios",
+            "Self-study materials"
+          ],
+          "duration": "Schedule to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "10-3",
+          "title": "Corporate Training",
+          "price": 300,
+          "priceLabel": "From $300",
+          "period": "",
+          "description": "A training programme tailored to your team's tasks and experience.",
+          "deliverables": [
+            "Needs assessment",
+            "Training sessions",
+            "Practical materials"
+          ],
+          "duration": "Schedule to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 300
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "10-4",
+          "title": "Digital Transformation Webinars",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "A webinar on using digital tools within a selected process.",
+          "deliverables": [
+            "Webinar outline",
+            "Presentation",
+            "Questions and answers"
+          ],
+          "duration": "Schedule to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "10-5",
+          "title": "CRM Training",
+          "price": 150,
+          "priceLabel": "From $150",
+          "period": "",
+          "description": "Practical training in your selected CRM system.",
+          "deliverables": [
+            "Workplace scenarios",
+            "Training session",
+            "User reference guide"
+          ],
+          "duration": "Schedule to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 150
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "10-6",
+          "title": "Online Seminars",
+          "price": 100,
+          "priceLabel": "From $100",
+          "period": "",
+          "description": "An online seminar on an agreed topic with practical discussion.",
+          "deliverables": [
+            "Seminar programme",
+            "Presentation materials",
+            "Question session"
+          ],
+          "duration": "Schedule to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 100
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "10-7",
+          "title": "Learning Materials",
+          "price": 100,
+          "priceLabel": "From $100",
+          "period": "",
+          "description": "Learning resources for a defined topic and audience level.",
+          "deliverables": [
+            "Course structure",
+            "Explanations and examples",
+            "Practice assignments"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 100
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "10-8",
+          "title": "Entrepreneurship Consulting",
+          "price": 100,
+          "priceLabel": "From $100",
+          "period": "",
+          "description": "Explore a specific business question and possible next steps.",
+          "deliverables": [
+            "Session preparation",
+            "Consulting session",
+            "Written recommendations"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 100
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "booking",
+      "number": "11",
+      "title": "Online Services & Booking",
+      "shortTitle": "Booking Platforms",
+      "description": "Online scheduling and availability management for services, accommodation, transport and equipment.",
+      "icon": "calendar",
+      "services": [
+        {
+          "id": "11-1",
+          "title": "Hotel Booking Systems",
+          "price": 3000,
+          "priceLabel": "From $3,000",
+          "period": "",
+          "description": "A room booking system with availability and reservation management.",
+          "deliverables": [
+            "Accommodation catalogue",
+            "Availability calendar",
+            "Reservation management"
+          ],
+          "duration": "5–9 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 3000
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "11-2",
+          "title": "Online Appointment Booking",
+          "price": 1200,
+          "priceLabel": "From $1,200",
+          "period": "",
+          "description": "Let clients book services against your specialists' schedules.",
+          "deliverables": [
+            "Service catalogue",
+            "Time slot selection",
+            "Appointment management"
+          ],
+          "duration": "3–5 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "11-3",
+          "title": "Transport Booking",
+          "price": 2500,
+          "priceLabel": "From $2,500",
+          "period": "",
+          "description": "A transport reservation service for selected dates and conditions.",
+          "deliverables": [
+            "Transport catalogue",
+            "Availability checks",
+            "Booking records"
+          ],
+          "duration": "4–8 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 2500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "11-4",
+          "title": "Equipment Reservations",
+          "price": 1500,
+          "priceLabel": "From $1,500",
+          "period": "",
+          "description": "Track equipment and reserve it for agreed periods.",
+          "deliverables": [
+            "Equipment register",
+            "Reservation calendar",
+            "Checkout and return statuses"
+          ],
+          "duration": "3–6 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 1500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "11-5",
+          "title": "Scheduling Calendars",
+          "price": 800,
+          "priceLabel": "From $800",
+          "period": "",
+          "description": "An available-slot calendar for customer appointments or resource planning.",
+          "deliverables": [
+            "Scheduling rules",
+            "Calendar interface",
+            "Slot management"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 800
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "11-6",
+          "title": "Booking Service Support",
+          "price": 200,
+          "priceLabel": "From $200",
+          "period": "",
+          "description": "Support for a selected booking service and agreed user journeys.",
+          "deliverables": [
+            "Request diagnostics",
+            "Agreed fixes",
+            "Booking flow checks"
+          ],
+          "duration": "Service period to be agreed (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "licensing",
+      "number": "12",
+      "title": "Intellectual Property & Licensing",
+      "shortTitle": "IP & Licensing",
+      "description": "Software usage terms and commercialization strategies for your technology.",
+      "icon": "shield",
+      "services": [
+        {
+          "id": "12-1",
+          "title": "Proprietary Software Licences",
+          "price": 200,
+          "priceLabel": "From $200",
+          "period": "",
+          "description": "A licence for selected proprietary software.",
+          "deliverables": [
+            "Product description",
+            "Licence terms",
+            "Activation instructions"
+          ],
+          "duration": "3–7 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "12-2",
+          "title": "Software Subscriptions",
+          "price": 30,
+          "priceLabel": "From $30",
+          "period": "",
+          "description": "A subscription to a selected software product on agreed terms.",
+          "deliverables": [
+            "Product selection",
+            "Subscription terms",
+            "Access setup"
+          ],
+          "duration": "1–5 business days (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 30
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "12-3",
+          "title": "Platform Licensing",
+          "price": 500,
+          "priceLabel": "From $500",
+          "period": "",
+          "description": "Select and arrange licensing terms for a chosen platform.",
+          "deliverables": [
+            "Usage description",
+            "Licence terms",
+            "Access delivery process"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "12-4",
+          "title": "Usage Rights",
+          "price": 200,
+          "priceLabel": "From $200",
+          "period": "",
+          "description": "Arrange an agreed scope of usage rights for a selected product.",
+          "deliverables": [
+            "Asset description",
+            "Scope of usage rights",
+            "Access handover process"
+          ],
+          "duration": "1–2 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 200
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        },
+        {
+          "id": "12-5",
+          "title": "Technology Commercialization",
+          "price": 500,
+          "priceLabel": "From $500",
+          "period": "",
+          "description": "A go-to-market plan and commercial offering for your technology.",
+          "deliverables": [
+            "Application analysis",
+            "Monetization model",
+            "Commercialization plan"
+          ],
+          "duration": "2–4 weeks (estimate; confirmed after scoping)",
+          "packages": [
+            {
+              "name": "Basic",
+              "description": "Indicative starting price for the minimum agreed scope. Deliverables and final price are confirmed before work begins.",
+              "price": 500
+            },
+            {
+              "name": "Custom",
+              "description": "A tailored quote for your scope, integrations and additional requirements.",
+              "price": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
