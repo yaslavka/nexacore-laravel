@@ -13,14 +13,33 @@ use Illuminate\Support\Facades\Http;
 /**
  * Payler module (docs: https://docs.payler.com/ru-api).
  *
- * Gate scheme (standard web behaviour):
- *  1. POST {host}/gapi/StartSession (x-www-form-urlencoded) -> {session_id}
- *  2. Redirect the user to GET {host}/gapi/Pay?session_id=… (PayGate) —
- *     the hosted payment page. After the operation the user is returned
- *     to return_url_success / return_url_decline.
- *  3. Payler sends a guaranteed notification (callback) POST with order_id
- *     to the URL configured in the merchant back office; the status is
- *     always re-verified via POST {host}/gapi/GetStatus.
+ * VERIFIED against the official documentation (platezhi.md, obshaya-informaciya.md):
+ *
+ *  StartSession — POST {host}/gapi/StartSession, Content-Type:
+ *  application/x-www-form-urlencoded (Http::asForm()). Fields we send,
+ *  all per the docs table:
+ *      key (R)             → merchant terminal_key
+ *      type (R)            → OneStep | TwoStep (merchant operation_type)
+ *      order_id (R)        → unique printable-ASCII id (+ "-N" on retries)
+ *      amount (R, N)       → minimal monetary units (tiyin/cents)
+ *      currency (O, A3)    → e.g. KGS
+ *      product (O, A..256) → clamped to 250 chars
+ *      lang (O, en|ru)     → clamped, default ru
+ *      email (R)           → customer e-mail
+ *      lifetime (O, N)     → session lifetime in minutes (>= 1)
+ *      return_url_success / return_url_decline (O)
+ *  Response: { order_id, amount, session_id } (JSON).
+ *
+ *  PayGate — GET {host}/gapi/Pay?session_id=… — the hosted payment page;
+ *  the user is returned to return_url_* after the operation.
+ *
+ *  GetStatus — POST {host}/gapi/GetStatus, form-urlencoded, {key, order_id};
+ *  response: { order_id, amount, status, … }. "Pending" must be polled.
+ *
+ *  Guaranteed notification (callback) — POST x-www-form-urlencoded with
+ *  order_id to the merchant-configured URL; a 2xx answer stops retries.
+ *  The notification carries no signature, so the status is ALWAYS
+ *  re-verified here via GetStatus before anything is applied locally.
  */
 class PaylerModule implements PaymentModule
 {
