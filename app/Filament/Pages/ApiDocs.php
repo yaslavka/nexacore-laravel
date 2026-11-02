@@ -52,6 +52,7 @@ class ApiDocs extends Page
             ['id' => 'settings', 'method' => 'GET', 'path' => '/api/settings', 'auth' => null],
             ['id' => 'catalog', 'method' => 'GET', 'path' => '/api/catalog', 'auth' => null],
             ['id' => 'orders', 'method' => 'POST', 'path' => '/api/orders', 'auth' => null],
+            ['id' => 'methods', 'method' => 'GET', 'path' => '/api/payments/methods', 'auth' => null],
             ['id' => 'charge', 'method' => 'POST', 'path' => '/api/v1/payments/{provider}/charge', 'auth' => 'api_key'],
             ['id' => 'payment_show', 'method' => 'GET', 'path' => '/api/payments/{token}', 'auth' => null],
             ['id' => 'payment_start', 'method' => 'POST', 'path' => '/api/payments/{token}/start', 'auth' => null],
@@ -101,6 +102,19 @@ JSON,
     "reference": "NX-LZ2K4-9A1F",
     "service": "Corporate Websites",
     "payment_status": "pending"
+}
+JSON,
+            'methods' => <<<'JSON'
+{
+    "theme": "nexacore",
+    "methods": [
+        {
+            "code": "payler",
+            "name": "Payler",
+            "mode": "sandbox",
+            "currency": "KGS"
+        }
+    ]
 }
 JSON,
             'charge' => <<<'JSON'

@@ -1,6 +1,6 @@
 import { initMotion, refreshMotion } from './motion.js';
 import { renderCheckout, stopCheckout } from './checkout.js?v=20261102-payler';
-import { COMPANY, formatKgsAmount, formatUsdAmount } from './company.js';
+import { COMPANY, formatKgsAmount, formatUsdAmount, kgsFromUsd } from './company.js';
 import { LEGAL_SLUGS, legalDoc } from './legal.js';
 import { LOCALES, LOCALE_META, companyAddress, detectLocale, getLocale, href, localizePath, packageLabel, parseRoute, pluralServices, setLocale, t } from './i18n.js';
 
@@ -131,7 +131,7 @@ function serviceRow(service) {
 function renderService(id) {
  const s=allServices.find(x=>x.id===id);if(!s)return notFound();
  document.title=`${s.title} — NexaCore`;
- main.innerHTML=`<div class="container service-page">${crumbs([[t('navServices'),'/services'],[s.categoryTitle,`/services/${s.categoryId}`],[s.title]])}<div class="service-detail-grid"><article><span class="eyebrow">${escape(s.categoryTitle)}</span><h1>${escape(s.title)}<span class="blue-word">.</span></h1><p class="detail-lead">${escape(s.description)}</p><div class="detail-meta"><span>${icon('clock')} ${escape(s.duration)}</span><span>${icon('globe')} ${escape(t('remoteCollab'))}</span></div><h2>${escape(t('included'))}</h2><ul class="deliverables">${s.deliverables.map(d=>`<li>${icon('check')}<span>${escape(d)}</span></li>`).join('')}</ul><div class="detail-note">${icon('consult')}<p>${escape(t('detailNote'))}</p></div><h2>${escape(t('youReceive'))}</h2><p>${escape(t('youReceiveText'))}</p></article><aside class="order-panel"><span class="eyebrow">${escape(t('firstStep'))}</span><h2>${escape(t('findFit'))}</h2><div class="package-options">${(s.packages||[{name:'Basic',description:'',price:s.price},{name:'Custom',description:'',price:null}]).map((p,i)=>`<label class="package-option"><input type="radio" name="package" value="${escape(p.name)}" ${i===0?'checked':''}><span><strong>${escape(packageLabel(p.name))}</strong><small>${escape(p.description)}</small></span><b>${money(p.price,s.period)}</b></label>`).join('')}</div><button class="button button-navy full-width" data-order="${escape(s.id)}">${escape(t('enquire'))} ${icon('arrow')}</button><p class="panel-caption">${t('noPaymentYet')}</p><div class="panel-bottom">${icon('license')}<span>${t('indicativePanel')}</span></div></aside></div></div>${cta()}`;
+ main.innerHTML=`<div class="container service-page">${crumbs([[t('navServices'),'/services'],[s.categoryTitle,`/services/${s.categoryId}`],[s.title]])}<div class="service-detail-grid"><article><span class="eyebrow">${escape(s.categoryTitle)}</span><h1>${escape(s.title)}<span class="blue-word">.</span></h1><p class="detail-lead">${escape(s.description)}</p><div class="detail-meta"><span>${icon('clock')} ${escape(s.duration)}</span><span>${icon('globe')} ${escape(t('remoteCollab'))}</span></div><h2>${escape(t('included'))}</h2><ul class="deliverables">${s.deliverables.map(d=>`<li>${icon('check')}<span>${escape(d)}</span></li>`).join('')}</ul><div class="detail-note">${icon('consult')}<p>${escape(t('detailNote'))}</p></div><h2>${escape(t('youReceive'))}</h2><p>${escape(t('youReceiveText'))}</p></article><aside class="order-panel"><span class="eyebrow">${escape(t('firstStep'))}</span><h2>${escape(t('findFit'))}</h2><div class="package-options">${(s.packages||[{name:'Basic',description:'',price:s.price},{name:'Custom',description:'',price:null}]).map((p,i)=>`<label class="package-option"><input type="radio" name="package" value="${escape(p.name)}" ${i===0?'checked':''}><span><strong>${escape(packageLabel(p.name))}</strong><small>${escape(p.description)}</small></span><b>${money(p.price,s.period)}</b></label>`).join('')}</div><button class="button button-navy full-width" data-pay="${escape(s.id)}">${escape(t('payNow'))} ${icon('arrow')}</button><p class="panel-caption">${t('payPanelCaption')}</p><div class="panel-bottom">${icon('license')}<span>${t('indicativePanel')}</span></div></aside></div></div>${cta()}`;
 }
 function orderForm(service, inDialog=false) {
  return `<form class="enquiry-form" data-service="${escape(service?.id || 'consultation')}"><div class="form-row"><label>${escape(t('yourName'))} <span>*</span><input name="name" autocomplete="name" placeholder="${escape(t('namePlaceholder'))}" required minlength="2" maxlength="100"></label><label>${escape(t('emailAddress'))} <span>*</span><input type="email" name="email" autocomplete="email" placeholder="${escape(t('emailPlaceholder'))}" required maxlength="254"></label></div><label>${escape(t('companyLabel'))}<input name="company" autocomplete="organization" placeholder="${escape(t('companyPlaceholder'))}" maxlength="200"></label>${!service?`<label>${escape(t('serviceInterest'))}<select name="direction"><option value="consultation">${escape(t('helpChoose'))}</option>${categories.map(c=>`<optgroup label="${escape(c.shortTitle||c.title)}">${c.services.map(s=>`<option value="${escape(s.id)}">${escape(s.title)}</option>`).join('')}</optgroup>`).join('')}</select></label>`:''}<label>${escape(t('projectLabel'))} ${!service?'<span>*</span>':''}<textarea name="message" rows="${inDialog?3:4}" placeholder="${escape(t('projectPlaceholder'))}" maxlength="5000" ${!service?'required minlength="10"':''}></textarea></label><label class="consent-label"><input name="consent" type="checkbox" required><span>${escape(t('consent'))} <a href="${href('/privacy')}" target="_blank" rel="noopener">${escape(t('privacy'))}</a>.</span></label><div class="form-error" role="alert"></div><button type="submit" class="button button-navy full-width">${escape(service?t('sendEnquiry'):t('startConversation'))} ${icon('arrow')}</button><p class="form-hint">${escape(t('formHint'))}</p></form>`;
@@ -150,6 +150,71 @@ function openOrder(id) {
  dialog.dataset.package=selected;
  $('.dialog-close',dialog).addEventListener('click',()=>dialog.close());
  dialog.showModal();bindForms(dialog);
+}
+/* ------------------------------------------------------------------ */
+/* Payment: the service page button opens the payment-system modal     */
+/* straight away; on confirm the client charge API creates the payment */
+/* and the browser is redirected to the hosted payment form.           */
+/* ------------------------------------------------------------------ */
+function payMajorFor(usdPrice,currency){
+ return currency==='KGS'?kgsFromUsd(usdPrice):Math.round(Number(usdPrice));
+}
+async function openPayDialog(id) {
+ const s=allServices.find(x=>x.id===id);if(!s)return;
+ const dialog=$('#order-dialog');
+ const selected=$('input[name="package"]:checked')?.value || 'Basic';
+ const pkg=s.packages?.find(p=>p.name===selected);
+ const price=pkg ? pkg.price : s.price;
+ const themeSlug=document.body.dataset.themeSlug||'nexacore';
+ dialog.innerHTML=`<button class="dialog-close icon-button" aria-label="${escape(t('closeDialog'))}">${icon('close')}</button><span class="eyebrow">${escape(t('payEyebrow'))}</span><h2 id="order-title">${escape(t('payDialogTitle'))}</h2><p class="dialog-subtitle">${escape(s.title)} · ${escape(packageLabel(selected))}${price!=null?` · ${money(price,s.period)}`:''}</p><div class="pay-loading">${escape(t('payLoading'))}</div>`;
+ $('.dialog-close',dialog).addEventListener('click',()=>dialog.close());
+ dialog.showModal();
+ let methods;
+ try{
+  const data=await api(`/api/payments/methods?theme=${encodeURIComponent(themeSlug)}`);
+  methods=data.methods||[];
+ }catch(err){
+  const box=$('.pay-loading',dialog);if(box)box.innerHTML=`<div class="form-error" role="alert">${escape(err.message)}</div>`;
+  return;
+ }
+ const body=$('.pay-loading',dialog);
+ if(!body)return; // the dialog was closed while loading
+ if(!methods.length){
+  body.outerHTML=`<p class="form-hint">${escape(t('payUnavailable'))}</p><button class="button button-navy full-width" data-order="${escape(s.id)}">${escape(t('enquire'))} ${icon('arrow')}</button>`;
+  return;
+ }
+ const amountLine=price!=null
+  ?`<div class="pay-summary"><span>${escape(t('payAmount'))}</span><strong id="pay-amount-line"></strong></div>`
+  :`<label>${escape(t('payCustomAmount'))} (${escape(methods[0].currency)}) <span>*</span><input name="amount" type="number" min="0.01" max="1000000" step="0.01" inputmode="decimal" required autocomplete="off"></label>`;
+ body.outerHTML=`<form id="pay-form"><div class="form-row"><label>${escape(t('emailAddress'))} <span>*</span><input type="email" name="email" autocomplete="email" placeholder="${escape(t('emailPlaceholder'))}" required maxlength="254"></label><label>${escape(t('yourName'))}<input name="name" autocomplete="name" placeholder="${escape(t('namePlaceholder'))}" maxlength="100"></label></div>${amountLine}<fieldset class="pay-methods"><legend>${escape(t('payMethod'))}</legend>${methods.map((m,i)=>`<label class="pay-method"><input type="radio" name="method" value="${escape(m.code)}" data-currency="${escape(m.currency)}" ${i===0?'checked':''}><span><strong>${escape(m.name)}${m.mode==='sandbox'?` <em class="pay-test">${escape(t('payTestBadge'))}</em>`:''}</strong><small>${escape(m.currency)}</small></span></label>`).join('')}</fieldset><p class="form-hint">${escape(t('payHint'))}</p><div class="form-error" role="alert"></div><button class="button button-navy full-width" type="submit">${escape(t('payConfirm'))} ${icon('right')}</button></form>`;
+ const amountLineEl=$('#pay-amount-line',dialog);
+ const updateAmount=()=>{
+  if(!amountLineEl)return;
+  const method=$('input[name="method"]:checked',dialog);
+  const currency=method?.dataset.currency||methods[0].currency;
+  const major=payMajorFor(price,currency);
+  amountLineEl.textContent=`${major.toLocaleString(getLocale()==='ru'?'ru-RU':'en-US')} ${currency}`+(currency==='KGS'?` ≈ $${formatUsdAmount(price)}`:'');
+ };
+ if(amountLineEl){updateAmount();dialog.querySelectorAll('input[name="method"]').forEach(r=>r.addEventListener('change',updateAmount));}
+ $('#pay-form',dialog).addEventListener('submit',async event=>{
+  event.preventDefault();
+  const form=event.currentTarget,button=$('button[type="submit"]',form),error=$('.form-error',form);
+  error.textContent='';
+  if(!form.reportValidity())return;
+  const values=Object.fromEntries(new FormData(form));
+  const method=methods.find(m=>m.code===values.method)||methods[0];
+  const currency=method.currency;
+  // Catalog prices are indicative USD; the merchant currency decides the
+  // charge currency (KGS uses the site rate). Custom packages take the
+  // agreed amount entered in the modal.
+  const major=price!=null?payMajorFor(price,currency):Math.round(Number(values.amount));
+  button.disabled=true;button.textContent=t('payProcessing');
+  try{
+   const charge=await api(`/api/v1/payments/${encodeURIComponent(method.code)}/charge`,{method:'POST',body:JSON.stringify({email:values.email,name:values.name||undefined,amount:Math.round(major*100),currency,product:`${s.title} — ${packageLabel(selected)}`.slice(0,250),theme:themeSlug,lang:getLocale()==='ru'?'ru':'en',metadata:{serviceId:s.id,packageName:selected}})});
+   form.innerHTML=`<div class="pay-redirect"><span class="success-icon">${icon('check')}</span><p>${escape(t('payRedirect'))}</p></div>`;
+   setTimeout(()=>{location.href=charge.paymentUrl;},700);
+  }catch(err){error.textContent=err.message;button.disabled=false;button.innerHTML=`${escape(t('tryAgain'))} ${icon('arrow')}`;}
+ });
 }
 function bindForms(root=document) {
  root.querySelectorAll('.enquiry-form').forEach(form=>form.addEventListener('submit',async event=>{
@@ -317,6 +382,7 @@ document.addEventListener('click',e=>{
   if(lang){e.preventDefault();switchLocale(lang.dataset.locale).catch(err=>notify(err.message));return;}
   if(!e.target.closest('.language-switcher')){const menu=$('.language-menu');const toggle=$('.language-toggle');if(menu&&!menu.hidden){menu.hidden=true;toggle?.setAttribute('aria-expanded','false');}}
   if(e.target.closest('.skip-link')){e.preventDefault();main.focus();main.scrollIntoView();return;}
+  const pay=e.target.closest('[data-pay]');if(pay){openPayDialog(pay.dataset.pay).catch(err=>notify(err.message));return;}
   const order=e.target.closest('[data-order]');if(order)openOrder(order.dataset.order);
   if(e.target.closest('[data-close-dialog]'))$('#order-dialog').close();
   const a=e.target.closest('a');

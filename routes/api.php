@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\DemoGatewayController;
 use App\Http\Controllers\Api\GatewayCallbackController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\PaymentMethodsController;
 use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,14 @@ Route::get('/health', fn () => response()->json(['status' => 'ok']));
 
 Route::get('/settings', SettingsController::class);
 Route::get('/catalog', CatalogController::class);
+
+/*
+ * Payment systems available on the site (drives the public "choose a
+ * payment system" modal). Registered before /payments/{token} — the
+ * literal segment would otherwise be shadowed by the token route.
+ */
+Route::get('/payments/methods', PaymentMethodsController::class)
+    ->middleware('throttle:60,1');
 
 Route::post('/orders', [OrderController::class, 'store'])
     ->middleware('throttle:20,60');

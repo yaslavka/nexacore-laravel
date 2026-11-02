@@ -339,6 +339,15 @@ return [
             'notes' => 'HTTP 429 is returned when the rate limit is exceeded.',
         ],
 
+        'methods' => [
+            'title' => 'Payment systems available on the site',
+            'desc' => 'Returns the active payment providers that have an active merchant for the theme. The public site uses it to render the “choose a payment system” modal before a charge. The theme defaults to the active site theme.',
+            'params' => [
+                ['theme', 'query, string', false, 'Site theme slug. Defaults to the active theme.'],
+            ],
+            'notes' => 'An empty methods array means online payment is not configured for the theme.',
+        ],
+
         'charge' => [
             'title' => 'Payment charge — customer + payment session',
             'desc' => 'The main payment API. Creates the customer in the database (auto-generated password, delivered once in this response and by e-mail), creates the order and the payment, opens a session at the payment system and returns the URL of the hosted payment form. The merchant is selected by the site theme — every theme can have its own merchant. Rate limited: 30 requests per minute.',

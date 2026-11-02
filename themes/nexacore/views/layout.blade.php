@@ -9,12 +9,12 @@
   <title>{{ $title }}</title>
   <link rel="icon" type="image/svg+xml" href="{{ theme_asset('assets/favicon.svg') }}">
   <link rel="preload" href="{{ theme_asset('assets/inter-variable.ttf') }}" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="{{ theme_asset('css/styles.css') }}?v=20261101-payler">
+  <link rel="stylesheet" href="{{ theme_asset('css/styles.css') }}?v=20261103-payflow">
   <link rel="stylesheet" href="{{ theme_asset('css/motion.css') }}">
   <link rel="stylesheet" href="{{ theme_asset('css/admin.css') }}?v=20261101-payler">
-  <script type="module" src="{{ theme_asset('js/app.js') }}?v=20261101-payler"></script>
+  <script type="module" src="{{ theme_asset('js/app.js') }}?v=20261103-payflow"></script>
 </head>
-<body data-theme-base="{{ theme_asset('') }}">
+<body data-theme-base="{{ theme_asset('') }}" data-theme-slug="{{ $theme->slug }}">
   <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" id="header"></header>

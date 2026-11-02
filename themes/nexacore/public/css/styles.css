@@ -76,3 +76,22 @@
 .checkout-card .consent-label{font-size:14px;line-height:1.6;margin:18px 0}.checkout-card .button{margin-top:12px}
 .payment-link-result{display:grid;gap:16px}.payment-link-result input{width:100%;font-size:14px;padding:12px;border:1px solid #cbd7e3;border-radius:8px}.invoice-actions{display:grid;gap:8px;margin-top:10px}.invoice-actions .button{font-size:12px;padding:9px 12px;white-space:nowrap}
 @media(max-width:800px){.checkout-page{grid-template-columns:1fr;gap:28px;padding-top:36px;padding-bottom:48px}.checkout-intro h1{max-width:540px}.checkout-card{padding:24px}.checkout-total strong{font-size:25px}}
+
+/* ---- Payment: choose-a-payment-system modal (service page) ---- */
+.pay-loading{padding:26px 0;text-align:center;color:var(--muted);font-size:14px}
+.pay-summary{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:13px 15px;margin:2px 0 16px;background:#f2f7fd;border:1px solid #dce8f4;border-radius:9px}
+.pay-summary span{font-size:13px;color:var(--muted)}
+.pay-summary strong{font-size:19px;color:var(--navy);white-space:nowrap}
+.pay-methods{border:0;margin:0 0 8px;padding:0;display:grid;gap:10px}
+.pay-methods legend{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding:0}
+.pay-method{display:flex;align-items:center;gap:11px;padding:15px 13px;border:1px solid #dce4ed;background:#fff;border-radius:9px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.pay-method:hover{border-color:#b9cede}
+.pay-method:has(input:checked){border-color:var(--blue);box-shadow:0 0 0 1px #1687d920;background:#fafdff}
+.pay-method input{margin:0;accent-color:var(--navy);width:17px;height:17px;flex-shrink:0}
+.pay-method>span{flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+.pay-method strong{font-size:15px;display:flex;align-items:center;gap:8px}
+.pay-method small{font-size:12px;color:var(--muted)}
+.pay-test{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;color:#8a5300;background:#ffedb3;border-radius:5px;padding:2px 7px;text-transform:uppercase;flex-shrink:0}
+.pay-redirect{display:grid;justify-items:center;gap:14px;padding:18px 0 8px;text-align:center;font-weight:600;color:var(--ink)}
+.pay-redirect p{margin:0}
+@media(max-width:800px){.pay-summary strong{font-size:17px}.pay-method{padding:14px 11px}}
