@@ -10,21 +10,37 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Support\Enums\FontWeight;
+
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 
 class PaymentResource extends Resource
 {
     protected static ?string $model = Payment::class;
 
-    protected static ?string $navigationGroup = 'Orders';
-
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
-    protected static ?string $navigationLabel = 'Payments';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('admin.groups.orders');
+    }
 
-    protected static ?string $pluralModelLabel = 'Payments';
+    public static function getNavigationLabel(): string
+    {
+        return __('admin.resources.payments.nav');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin.resources.payments.singular');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('admin.resources.payments.plural');
+    }
 
     public static function canCreate(): bool
     {
@@ -46,7 +62,7 @@ class PaymentResource extends Resource
         return $form
             ->schema([
                 Select::make('order_id')
-                    ->label('Enquiry')
+                    ->label(__('admin.resources.orders.nav'))
                     ->options(fn () => Order::query()
                         ->where('status', '!=', 'cancelled')
                         ->orderByDesc('created_at')
@@ -60,11 +76,11 @@ class PaymentResource extends Resource
                     ->disabled(fn (?string $operation) => $operation === 'edit')
                     ->dehydrated(fn (?string $operation) => $operation === 'create'),
                 TextInput::make('amount_major')
-                    ->label('Amount (USD)')
+                    ->label(__('admin.fields.amount'))
                     ->numeric()
                     ->minValue(0.01)
                     ->required()
-                    ->helperText('The amount is agreed with the client before invoicing.')
+                    ->helperText(__('admin.fields.amount_helper'))
                     ->dehydrated(false),
             ]);
     }
@@ -73,22 +89,45 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('Token')->limit(10)->copyable(),
-                TextColumn::make('order.reference')->label('Enquiry')->searchable(),
-                TextColumn::make('amount')
-                    ->formatStateUsing(fn ($record): string => number_format($record->amount / 100, 2).' '.$record->currency),
-                TextColumn::make('mode')->badge()->color(fn (string $state) => $state === 'sandbox' ? 'warning' : ($state === 'off' ? 'gray' : 'success')),
-                TextColumn::make('status')->badge()->color(fn (string $state) => match ($state) {
-                    'paid' => 'success',
-                    'cancelled', 'expired' => 'danger',
-                    'pending' => 'warning',
-                    default => 'info',
-                }),
-                TextColumn::make('created_at')->dateTime('d M Y, H:i')->sortable(),
+                Stack::make([
+                    TextColumn::make('order.reference')
+                        ->label(__('admin.resources.orders.nav'))
+                        ->searchable()
+                        ->weight(FontWeight::Bold)
+                        ->size('lg'),
+                    TextColumn::make('id')->label(__('admin.fields.token'))->limit(10)->copyable(),
+                    TextColumn::make('amount')
+                        ->label(__('admin.fields.amount'))
+                        ->formatStateUsing(fn ($record): string => number_format($record->amount / 100, 2).' '.$record->currency),
+                    TextColumn::make('mode')
+                        ->label(__('admin.fields.mode'))
+                        ->badge()
+                        ->color(fn (string $state) => $state === 'sandbox' ? 'warning' : ($state === 'off' ? 'gray' : 'success')),
+                    TextColumn::make('status')
+                        ->label(__('admin.fields.status'))
+                        ->badge()
+                        ->formatStateUsing(fn (string $state): string => __('admin.statuses.'.$state) !== 'admin.statuses.'.$state ? __('admin.statuses.'.$state) : $state)
+                        ->color(fn (string $state) => match ($state) {
+                            'paid' => 'success',
+                            'cancelled', 'expired' => 'danger',
+                            'pending' => 'warning',
+                            default => 'info',
+                        }),
+                    TextColumn::make('created_at')
+                        ->label(__('admin.fields.created_at'))
+                        ->dateTime('d M Y, H:i')
+                        ->sortable(),
+                ]),
             ])
             ->actions([
                 ViewAction::make(),
             ])
+            ->contentGrid([
+                'default' => 1,
+                'sm' => 2,
+                'xl' => 3,
+            ])
+            ->paginated([10, 25, 50])
             ->defaultSort('created_at', 'desc');
     }
 

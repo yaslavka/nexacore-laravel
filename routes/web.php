@@ -36,7 +36,7 @@ Route::get('/robots.txt', fn () => response(
 
 Route::get('/sitemap.xml', function (CatalogService $catalog) {
     $base = rtrim(config('app.url'), '/');
-    $categories = $catalog->get('en')['categories'];
+    $categories = $catalog->get(default_site_locale())['categories'];
     $paths = [];
     $bases = ['/', '/services', '/contact', '/privacy', '/offer', '/payment', '/orders', '/refunds', '/remote', '/company'];
     foreach ($categories as $category) {
@@ -45,9 +45,9 @@ Route::get('/sitemap.xml', function (CatalogService $catalog) {
             $bases[] = '/service/'.$service['id'];
         }
     }
-    foreach (['en', 'ru', 'ky'] as $locale) {
+    foreach (site_locales() as $locale) {
         foreach ($bases as $path) {
-            $paths[] = $locale === 'en' ? $path : '/'.$locale.($path === '/' ? '' : $path);
+            $paths[] = $locale === default_site_locale() ? $path : '/'.$locale.($path === '/' ? '' : $path);
         }
     }
     $xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'

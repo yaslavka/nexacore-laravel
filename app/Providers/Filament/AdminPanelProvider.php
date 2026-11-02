@@ -2,12 +2,12 @@
 
 namespace App\Providers\Filament;
 
-use App\Models\Order;
-use App\Models\Payment;
+use App\Http\Middleware\SetAdminLocale;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -29,22 +29,25 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('NexaCore Workspace')
-            ->favicon(asset('assets/favicon.svg'))
+            ->favicon(theme_asset('assets/favicon.svg', 'nexacore'))
             ->colors([
                 'primary' => Color::hex('#123A6E'),
                 'info' => Color::hex('#1687D9'),
             ])
             ->darkMode(false)
+            // Group names match resource::$navigationGroup; labels are
+            // translated at render time for the active admin locale.
             ->navigationGroups([
-                'Orders',
-                'Catalog',
-                'System',
+                NavigationGroup::make(fn (): string => __('admin.groups.orders')),
+                NavigationGroup::make(fn (): string => __('admin.groups.catalog')),
+                NavigationGroup::make(fn (): string => __('admin.groups.system')),
             ])
             ->navigationItems([
-                NavigationItem::make('View website')
+                NavigationItem::make()
+                    ->label(fn (): string => __('admin.nav.view_site'))
                     ->url('/', shouldOpenInNewTab: true)
                     ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->group('System')
+                    ->group(fn (): string => __('admin.groups.system'))
                     ->sort(100),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
@@ -67,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                SetAdminLocale::class,
             ])
             ->authMiddleware([
                 Authenticate::class,

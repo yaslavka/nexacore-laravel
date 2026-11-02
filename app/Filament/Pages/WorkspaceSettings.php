@@ -13,13 +13,29 @@ use Filament\Notifications\Notification;
 
 class WorkspaceSettings extends Page
 {
-    protected static ?string $navigationGroup = 'System';
-
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static string $view = 'filament.pages.workspace-settings';
 
-    protected static ?string $navigationLabel = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('admin.groups.system');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('admin.pages.settings.nav');
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return 4;
+    }
+
+    public function getTitle(): string
+    {
+        return __('admin.pages.settings.title');
+    }
 
     public ?array $data = [];
 
@@ -42,18 +58,18 @@ class WorkspaceSettings extends Page
     {
         return $form
             ->schema([
-                Section::make('Company')->schema([
-                    TextInput::make('company_name')->required()->maxLength(200),
-                    TextInput::make('legal_entity')->maxLength(1000),
-                    TextInput::make('tagline')->maxLength(500),
-                    TextInput::make('email')->email()->maxLength(254),
-                    TextInput::make('phone')->maxLength(100),
-                    TextInput::make('address')->maxLength(1000),
+                Section::make(__('admin.pages.settings.company'))->schema([
+                    TextInput::make('company_name')->required()->maxLength(200)->label(__('admin.fields.company_name')),
+                    TextInput::make('legal_entity')->maxLength(1000)->label(__('admin.fields.legal_entity')),
+                    TextInput::make('tagline')->maxLength(500)->label(__('admin.fields.tagline')),
+                    TextInput::make('email')->email()->maxLength(254)->label(__('admin.fields.email')),
+                    TextInput::make('phone')->maxLength(100)->label(__('admin.fields.phone')),
+                    TextInput::make('address')->maxLength(1000)->label(__('admin.fields.address')),
                 ])->columns(2),
-                Section::make('Legal texts')
+                Section::make(__('admin.pages.settings.legal'))
                     ->schema([
-                        Textarea::make('privacy_text')->rows(6)->maxLength(12000)->helperText('Optional custom privacy text.'),
-                        Textarea::make('terms_text')->rows(6)->maxLength(12000)->helperText('Optional custom terms text.'),
+                        Textarea::make('privacy_text')->rows(6)->maxLength(12000)->label(__('admin.pages.settings.privacy'))->helperText(__('admin.pages.settings.privacy_hint')),
+                        Textarea::make('terms_text')->rows(6)->maxLength(12000)->label(__('admin.pages.settings.terms'))->helperText(__('admin.pages.settings.terms_hint')),
                     ])
                     ->columns(2),
             ])
@@ -63,7 +79,7 @@ class WorkspaceSettings extends Page
     public function save(): void
     {
         if (! (auth()->user()?->canManageSettings() ?? false)) {
-            Notification::make()->title('Insufficient permissions')->danger()->send();
+            Notification::make()->title(__('admin.pages.settings.no_perms'))->danger()->send();
 
             return;
         }
@@ -71,6 +87,6 @@ class WorkspaceSettings extends Page
         $data = $this->form->getState();
         Setting::saveCurrent($data);
         AuditEvent::record('settings.updated', '', auth()->user()?->email ?? 'system');
-        Notification::make()->title('Settings saved')->success()->send();
+        Notification::make()->title(__('admin.pages.settings.saved'))->success()->send();
     }
 }

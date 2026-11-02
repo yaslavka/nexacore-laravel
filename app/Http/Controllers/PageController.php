@@ -64,8 +64,10 @@ class PageController extends Controller
 
     private function render(string $locale, ?string $title = null, ?string $description = null): View
     {
+        $locales = site_locales();
+
         return theme_view('layout', [
-            'lang' => in_array($locale, ['ru', 'ky'], true) ? $locale : 'en',
+            'lang' => in_array($locale, $locales, true) ? $locale : default_site_locale(),
             'title' => $title ?? self::DEFAULT_TITLE,
             'description' => $description ?? self::DEFAULT_DESCRIPTION,
             'theme' => theme(),

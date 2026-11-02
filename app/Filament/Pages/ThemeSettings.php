@@ -2,30 +2,43 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\AuditEvent;
 use App\Support\Themes\Theme;
 use App\Support\Themes\ThemeManager;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
-use Filament\Pages\Page;
 use Filament\Notifications\Notification;
+use Filament\Pages\Page;
 use Illuminate\Support\HtmlString;
 
 class ThemeSettings extends Page
 {
-    protected static ?string $navigationGroup = 'System';
-
     protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
 
     protected static string $view = 'filament.pages.theme-settings';
 
-    protected static ?string $navigationLabel = 'Themes';
-
-    protected static ?string $title = 'Themes';
-
     public ?array $data = [];
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('admin.groups.system');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('admin.pages.themes.nav');
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return 0;
+    }
+
+    public function getTitle(): string
+    {
+        return __('admin.pages.themes.title');
+    }
 
     public function mount(): void
     {
@@ -41,15 +54,11 @@ class ThemeSettings extends Page
 
         return $form
             ->schema([
-                Section::make('Installed themes')
-                    ->description(new HtmlString(
-                        'Pick the theme used for the public website. Every theme ships its own '
-                        .'Blade views and assets, so layouts may differ completely. '
-                        .'Drop a new folder with a <code>theme.json</code> into <code>themes/</code> to add one.'
-                    ))
+                Section::make(__('admin.pages.themes.installed'))
+                    ->description(new HtmlString(__('admin.pages.themes.description')))
                     ->schema([
                         Radio::make('active_theme')
-                            ->label('Active theme')
+                            ->label(__('admin.pages.themes.active'))
                             ->options(collect($themes)->mapWithKeys(
                                 fn (Theme $theme, string $slug) => [
                                     $slug => $theme->name().'  ·  v'.$theme->version(),
@@ -66,23 +75,19 @@ class ThemeSettings extends Page
                             ->live(),
                     ]),
 
-                Section::make('How it works')
+                Section::make(__('admin.pages.themes.how'))
                     ->collapsible()
                     ->collapsed()
                     ->schema([
-                        Placeholder::make('themes_path')
-                            ->label('Themes directory')
+                        \Filament\Forms\Components\Placeholder::make('themes_path')
+                            ->label(__('admin.pages.themes.path'))
                             ->content(new HtmlString('<code>'.$manager->basePath().'</code>')),
-                        Placeholder::make('active_path')
-                            ->label('Resolved active theme')
+                        \Filament\Forms\Components\Placeholder::make('active_path')
+                            ->label(__('admin.pages.themes.resolved'))
                             ->content(new HtmlString('<code>'.$manager->activeSlug().'</code> — themes/{slug}/views + themes/{slug}/public')),
-                        Placeholder::make('add_theme')
-                            ->label('Adding a theme')
-                            ->content(new HtmlString(
-                                'Copy <code>themes/starter</code>, set a unique <code>slug</code> in <code>theme.json</code>, '
-                                .'adjust <code>views/layout.blade.php</code> and assets, run <code>php artisan themes:list</code> — '
-                                .'then select it here.'
-                            )),
+                        \Filament\Forms\Components\Placeholder::make('add_theme')
+                            ->label(__('admin.pages.themes.add'))
+                            ->content(new HtmlString(__('admin.pages.themes.add_hint'))),
                     ])
                     ->columns(1),
             ])
@@ -99,7 +104,7 @@ class ThemeSettings extends Page
             $theme = $manager->setActive((string) $data['active_theme']);
         } catch (\Throwable $e) {
             Notification::make()
-                ->title('Theme switch failed')
+                ->title(__('admin.pages.themes.switch_failed'))
                 ->body($e->getMessage())
                 ->danger()
                 ->send();
@@ -110,9 +115,11 @@ class ThemeSettings extends Page
         // Make sure the newly activated theme's assets are exposed.
         $manager->publishAssets();
 
+        AuditEvent::record('theme.activated', $theme->slug(), auth()->user()?->email ?? 'system');
+
         Notification::make()
-            ->title('Theme activated')
-            ->body($theme->name().' is now used by the public website.')
+            ->title(__('admin.pages.themes.activated'))
+            ->body(__('admin.pages.themes.activated_body', ['theme' => $theme->name()]))
             ->success()
             ->send();
     }

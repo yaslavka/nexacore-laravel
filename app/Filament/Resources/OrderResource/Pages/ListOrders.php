@@ -17,12 +17,12 @@ class ListOrders extends ListRecords
     {
         return [
             Actions\Action::make('exportCsv')
-                ->label('Export CSV')
+                ->label(__('admin.order_actions.export_csv'))
                 ->icon('heroicon-o-arrow-down-tray')
                 ->visible(fn (): bool => auth()->user()?->canExport() ?? false)
                 ->action(fn () => $this->exportCsv()),
             Actions\Action::make('backup')
-                ->label('Backup JSON')
+                ->label(__('admin.order_actions.backup_json'))
                 ->icon('heroicon-o-archive-box')
                 ->visible(fn (): bool => auth()->user()?->canExport() ?? false)
                 ->action(function () {

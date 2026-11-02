@@ -14,18 +14,18 @@ class WorkspaceStats extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('New enquiries', Order::query()->where('status', 'new')->count())
-                ->description('Awaiting first response')
+            Stat::make(__('admin.stats.new_enquiries'), Order::query()->where('status', 'new')->count())
+                ->description(__('admin.stats.new_enquiries_desc'))
                 ->color('info')
                 ->icon('heroicon-o-inbox-arrow-down'),
-            Stat::make('In progress', Order::query()->where('status', 'in_progress')->count())
+            Stat::make(__('admin.stats.in_progress'), Order::query()->where('status', 'in_progress')->count())
                 ->color('warning')
                 ->icon('heroicon-o-arrow-path'),
-            Stat::make('Completed', Order::query()->where('status', 'completed')->count())
+            Stat::make(__('admin.stats.completed'), Order::query()->where('status', 'completed')->count())
                 ->color('success')
                 ->icon('heroicon-o-check-circle'),
-            Stat::make('Payments', Payment::query()->where('status', '!=', 'cancelled')->count())
-                ->description('Active payment links')
+            Stat::make(__('admin.stats.payments'), Payment::query()->where('status', '!=', 'cancelled')->count())
+                ->description(__('admin.stats.payments_desc'))
                 ->color('gray')
                 ->icon('heroicon-o-banknotes'),
         ];
