@@ -79,7 +79,8 @@ class ThemeSettings extends Page
         // Make sure the newly activated theme's assets are exposed.
         $manager->publishAssets();
 
-        AuditEvent::record('theme.activated', $theme->slug(), auth()->user()?->email ?? 'system');
+        // `slug` is a readonly property on the Theme DTO, not a method.
+        AuditEvent::record('theme.activated', $theme->slug, auth()->user()?->email ?? 'system');
 
         Notification::make()
             ->title(__('admin.pages.themes.activated'))

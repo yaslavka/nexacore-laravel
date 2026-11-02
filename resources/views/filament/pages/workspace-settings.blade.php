@@ -3,9 +3,9 @@
         {{ $this->form }}
 
         <div class="fi-form-actions">
-            <button type="submit" class="fi-btn fi-btn-color-primary">
+            <x-filament::button type="submit" color="primary">
                 Save settings
-            </button>
+            </x-filament::button>
         </div>
     </form>
 </x-filament-panels::page>

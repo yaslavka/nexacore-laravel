@@ -12,6 +12,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Support\Enums\Alignment;
@@ -127,19 +128,22 @@ class ServiceResource extends Resource
                         ->searchable()
                         ->weight(FontWeight::Bold)
                         ->size('lg'),
+                    // Translation badges live in one row under the title.
+                    Split::make([
+                        TextColumn::make('ru')
+                            ->getStateUsing(fn ($record): string => !empty($record->ru['title']) ? '✓ ru' : '— ru')
+                            ->badge()
+                            ->color(fn ($record): string => !empty($record->ru['title']) ? 'success' : 'gray'),
+                        TextColumn::make('ky')
+                            ->getStateUsing(fn ($record): string => !empty($record->ky['title']) ? '✓ ky' : '— ky')
+                            ->badge()
+                            ->color(fn ($record): string => !empty($record->ky['title']) ? 'success' : 'gray'),
+                    ]),
                     TextColumn::make('id')->label(__('admin.fields.id'))->limit(12),
                     TextColumn::make('category_id')->label(__('admin.fields.category')),
                     TextColumn::make('price')
                         ->label(__('admin.fields.price'))
                         ->formatStateUsing(fn ($state): string => $state === null ? __('admin.fields.custom_quote') : '$'.number_format((float) $state)),
-                    TextColumn::make('ru')
-                        ->formatStateUsing(fn ($record): string => !empty($record->ru['title']) ? '✓ ru' : '— ru')
-                        ->badge()
-                        ->color(fn ($record): string => !empty($record->ru['title']) ? 'success' : 'gray'),
-                    TextColumn::make('ky')
-                        ->formatStateUsing(fn ($record): string => !empty($record->ky['title']) ? '✓ ky' : '— ky')
-                        ->badge()
-                        ->color(fn ($record): string => !empty($record->ky['title']) ? 'success' : 'gray'),
                 ]),
             ])
             ->actions([

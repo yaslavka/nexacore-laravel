@@ -10,6 +10,7 @@ use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\TextSize;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -65,18 +66,25 @@ class AuditEventResource extends Resource
         return $table
             ->columns([
                 Stack::make([
+                    // Badges live in one horizontal row under the event name.
                     TextColumn::make('action')
                         ->label(__('admin.fields.action'))
-                        ->badge()
-                        ->color(fn (string $state): string => str_contains($state, 'cancel') ? 'danger' : (str_contains($state, 'paid') ? 'success' : 'info')),
+                        ->weight(FontWeight::Bold)
+                        ->size('lg'),
+                    Split::make([
+                        TextColumn::make('action_copy')
+                            ->badge()
+                            ->color(fn (string $state): string => str_contains($state, 'cancel') ? 'danger' : (str_contains($state, 'paid') ? 'success' : 'info'))
+                            ->getStateUsing(fn ($record): string => (string) $record->action),
+                        TextColumn::make('actor')
+                            ->label(__('admin.fields.actor'))
+                            ->badge()
+                            ->color('gray'),
+                    ]),
                     TextColumn::make('at')
                         ->label(__('admin.fields.time'))
                         ->dateTime('d M Y, H:i:s')
                         ->sortable(),
-                    TextColumn::make('actor')
-                        ->label(__('admin.fields.actor'))
-                        ->badge()
-                        ->color('gray'),
                     TextColumn::make('target')
                         ->label(__('admin.fields.target'))
                         ->limit(40)

@@ -14,6 +14,7 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Support\Enums\FontWeight;
 
@@ -104,19 +105,22 @@ class LanguageResource extends Resource
                         ->label(__('admin.languages.native'))
                         ->weight(FontWeight::Bold)
                         ->size('lg'),
-                    TextColumn::make('code')
-                        ->label(__('admin.languages.code'))
-                        ->badge()
-                        ->color('primary')
-                        ->copyable(),
+                    // Badges live in one horizontal row right under the title.
+                    Split::make([
+                        TextColumn::make('code')
+                            ->label(__('admin.languages.code'))
+                            ->badge()
+                            ->color('primary')
+                            ->copyable(),
+                        IconColumn::make('is_active')
+                            ->label(__('admin.languages.active'))
+                            ->boolean(),
+                        IconColumn::make('is_default')
+                            ->label(__('admin.languages.default'))
+                            ->boolean(),
+                    ]),
                     TextColumn::make('name')
                         ->label(__('admin.languages.name')),
-                    IconColumn::make('is_active')
-                        ->label(__('admin.languages.active'))
-                        ->boolean(),
-                    IconColumn::make('is_default')
-                        ->label(__('admin.languages.default'))
-                        ->boolean(),
                     TextColumn::make('sort_order')
                         ->label(__('admin.languages.sort'))
                         ->sortable(),

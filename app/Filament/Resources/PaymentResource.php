@@ -14,6 +14,7 @@ use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 
@@ -98,24 +99,27 @@ class PaymentResource extends Resource
                         ->searchable()
                         ->weight(FontWeight::Bold)
                         ->size('lg'),
+                    // Badges live in one horizontal row right under the title.
+                    Split::make([
+                        TextColumn::make('mode')
+                            ->label(__('admin.fields.mode'))
+                            ->badge()
+                            ->color(fn (string $state) => $state === 'sandbox' ? 'warning' : ($state === 'off' ? 'gray' : 'success')),
+                        TextColumn::make('status')
+                            ->label(__('admin.fields.status'))
+                            ->badge()
+                            ->formatStateUsing(fn (string $state): string => __('admin.statuses.'.$state) !== 'admin.statuses.'.$state ? __('admin.statuses.'.$state) : $state)
+                            ->color(fn (string $state) => match ($state) {
+                                'paid' => 'success',
+                                'cancelled', 'expired' => 'danger',
+                                'pending' => 'warning',
+                                default => 'info',
+                            }),
+                    ]),
                     TextColumn::make('id')->label(__('admin.fields.token'))->limit(10)->copyable(),
                     TextColumn::make('amount')
                         ->label(__('admin.fields.amount'))
                         ->formatStateUsing(fn ($record): string => number_format($record->amount / 100, 2).' '.$record->currency),
-                    TextColumn::make('mode')
-                        ->label(__('admin.fields.mode'))
-                        ->badge()
-                        ->color(fn (string $state) => $state === 'sandbox' ? 'warning' : ($state === 'off' ? 'gray' : 'success')),
-                    TextColumn::make('status')
-                        ->label(__('admin.fields.status'))
-                        ->badge()
-                        ->formatStateUsing(fn (string $state): string => __('admin.statuses.'.$state) !== 'admin.statuses.'.$state ? __('admin.statuses.'.$state) : $state)
-                        ->color(fn (string $state) => match ($state) {
-                            'paid' => 'success',
-                            'cancelled', 'expired' => 'danger',
-                            'pending' => 'warning',
-                            default => 'info',
-                        }),
                     TextColumn::make('created_at')
                         ->label(__('admin.fields.created_at'))
                         ->dateTime('d M Y, H:i')

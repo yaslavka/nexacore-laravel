@@ -12,6 +12,24 @@ class Setting extends Model
         'legal_entity', 'privacy_text', 'terms_text', 'active_theme',
     ];
 
+    /**
+     * These columns are NOT NULL in the schema. An empty form field
+     * arrives as null (Livewire), so coerce it to an empty string
+     * instead of tripping the SQLite integrity constraint.
+     */
+    protected array $notNullStrings = [
+        'company_name', 'tagline', 'email', 'phone', 'address', 'legal_entity',
+    ];
+
+    public function setAttribute($key, $value)
+    {
+        if (in_array($key, $this->notNullStrings, true)) {
+            $value = (string) ($value ?? '');
+        }
+
+        return parent::setAttribute($key, $value);
+    }
+
     public static function defaults(): array
     {
         return [

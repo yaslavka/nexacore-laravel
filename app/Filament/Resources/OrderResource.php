@@ -15,6 +15,7 @@ use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 
@@ -106,35 +107,38 @@ class OrderResource extends Resource
                         ->copyable()
                         ->weight(FontWeight::Bold)
                         ->size('lg'),
-                TextColumn::make('service_title')
-                    ->label(__('admin.fields.service'))
-                    ->searchable()
-                    ->limit(30),
-                TextColumn::make('package_name')
-                    ->label(__('admin.fields.package'))
-                    ->badge()
-                    ->placeholder('—'),
-                TextColumn::make('name')
-                    ->label(__('admin.fields.name'))
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label(__('admin.fields.email'))
-                    ->searchable(),
-                TextColumn::make('status')
-                    ->label(__('admin.fields.status'))
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'new' => 'info',
-                        'in_progress' => 'warning',
-                        'completed' => 'success',
-                        'cancelled' => 'danger',
-                        default => 'gray',
-                    })
-                    ->formatStateUsing(fn (string $state): string => self::statusOptions()[$state] ?? $state),
-                TextColumn::make('payment_status')
-                    ->label(__('admin.fields.payment'))
-                    ->badge()
-                    ->color(fn (string $state): string => str_contains($state, 'paid') ? 'success' : 'gray'),
+                    // Badges live in one horizontal row right under the title.
+                    Split::make([
+                        TextColumn::make('package_name')
+                            ->label(__('admin.fields.package'))
+                            ->badge()
+                            ->placeholder('—'),
+                        TextColumn::make('status')
+                            ->label(__('admin.fields.status'))
+                            ->badge()
+                            ->color(fn (string $state): string => match ($state) {
+                                'new' => 'info',
+                                'in_progress' => 'warning',
+                                'completed' => 'success',
+                                'cancelled' => 'danger',
+                                default => 'gray',
+                            })
+                            ->formatStateUsing(fn (string $state): string => self::statusOptions()[$state] ?? $state),
+                        TextColumn::make('payment_status')
+                            ->label(__('admin.fields.payment'))
+                            ->badge()
+                            ->color(fn (string $state): string => str_contains($state, 'paid') ? 'success' : 'gray'),
+                    ]),
+                    TextColumn::make('service_title')
+                        ->label(__('admin.fields.service'))
+                        ->searchable()
+                        ->limit(30),
+                    TextColumn::make('name')
+                        ->label(__('admin.fields.name'))
+                        ->searchable(),
+                    TextColumn::make('email')
+                        ->label(__('admin.fields.email'))
+                        ->searchable(),
                     TextColumn::make('created_at')
                         ->label(__('admin.fields.created_at'))
                         ->dateTime('d M Y, H:i')

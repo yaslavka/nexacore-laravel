@@ -18,6 +18,7 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ReplicateAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -109,20 +110,23 @@ class PaymentProviderResource extends Resource
                         ->label(__('admin.fields.title'))
                         ->weight(FontWeight::Bold)
                         ->size('lg'),
-                    TextColumn::make('code')
-                        ->badge()
-                        ->color('warning'),
-                    TextColumn::make('driver')
-                        ->label(__('admin.payment_fields.driver'))
-                        ->badge()
-                        ->color('gray'),
-                    IconColumn::make('is_active')
-                        ->label(__('admin.payment_fields.is_active'))
-                        ->boolean(),
-                    TextColumn::make('merchants_count')
-                        ->counts('merchants')
-                        ->label(__('admin.payment_merchants.plural'))
-                        ->badge(),
+                    // Badges live in one horizontal row right under the title.
+                    Split::make([
+                        TextColumn::make('code')
+                            ->badge()
+                            ->color('warning'),
+                        TextColumn::make('driver')
+                            ->label(__('admin.payment_fields.driver'))
+                            ->badge()
+                            ->color('gray'),
+                        TextColumn::make('merchants_count')
+                            ->counts('merchants')
+                            ->label(__('admin.payment_merchants.plural'))
+                            ->badge(),
+                        IconColumn::make('is_active')
+                            ->label(__('admin.payment_fields.is_active'))
+                            ->boolean(),
+                    ]),
                 ]),
             ])
             ->actions([

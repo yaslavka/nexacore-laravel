@@ -97,13 +97,55 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* 4. Card footer — Edit / Delete buttons row                          */
+/* 4. Card chrome — corner dropdown, badge row, footer buttons         */
 /* ------------------------------------------------------------------ */
 
-.dark .fi-ta-content-grid .fi-ta-actions {
+/* Badges (and icon flags) sit in one horizontal row under the title
+   (Filament Split layout inside the record stack). Filament wraps every
+   column in a `w-full` block, so shrink each wrapper back to its
+   content — otherwise every badge takes a whole line. */
+.dark .fi-ta-content-grid .fi-ta-split > div {
+    width: auto !important;
+    flex: 0 0 auto !important;
+}
+
+.dark .fi-ta-content-grid .fi-ta-split {
+    flex-wrap: wrap;
+}
+
+/* The "⋯" action-group jumps to the top-right corner of the card,
+   like on every standard card. The actions row itself is static, so
+   the absolutely positioned group resolves against .fi-ta-record
+   (which is position:relative). */
+.dark .fi-ta-content-grid > .fi-ta-record .fi-ta-actions > .fi-dropdown {
+    position: absolute;
+    top: 0.8rem;
+    inset-inline-end: 0.8rem;
+    z-index: 2;
+}
+
+/* Reserve the corner: the TITLE (first column of the record stack)
+   never runs under the "⋯" button. Only the title — applying this to
+   every stack child would shrink the badge row for no reason. */
+.dark .fi-ta-content-grid > .fi-ta-record .flex.items-start > div:first-child {
+    padding-inline-end: 3.1rem !important;
+}
+
+/* Footer: Edit / Delete stay at the bottom, spread to the sides. */
+.dark .fi-ta-content-grid > .fi-ta-record .fi-ta-actions {
     border-top: 1px solid rgb(var(--nc-amber) / 0.12);
+    justify-content: space-between !important;
     gap: 0.5rem !important;
-    padding-bottom: 0.25rem;
+    padding-top: 0.7rem;
+}
+
+/* Cards whose only action is the corner "⋯" (e.g. audit log): collapse
+   the empty footer, but keep the corner button visible. */
+.dark .fi-ta-content-grid > .fi-ta-record .fi-ta-actions:not(:has(> .fi-btn)) {
+    display: block;
+    height: 0;
+    padding: 0 !important;
+    border-top: none !important;
 }
 
 /* On phones the two bottom buttons stretch edge-to-edge. */

@@ -14,6 +14,7 @@ use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -101,17 +102,20 @@ class CategoryResource extends Resource
                         ->searchable()
                         ->weight(FontWeight::Bold)
                         ->size('lg'),
+                    // Translation badges live in one row under the title.
+                    Split::make([
+                        TextColumn::make('ru')
+                            ->getStateUsing(fn ($record): string => !empty($record->ru['title']) ? '✓ ru' : '— ru')
+                            ->color(fn ($record): string => !empty($record->ru['title']) ? 'success' : 'gray')
+                            ->badge(),
+                        TextColumn::make('ky')
+                            ->getStateUsing(fn ($record): string => !empty($record->ky['title']) ? '✓ ky' : '— ky')
+                            ->color(fn ($record): string => !empty($record->ky['title']) ? 'success' : 'gray')
+                            ->badge(),
+                    ]),
                     TextColumn::make('number')->label('#')->sortable(),
                     TextColumn::make('short_title')->label(__('admin.fields.short'))->placeholder('—'),
                     TextColumn::make('services_count')->counts('services')->label(__('admin.fields.services')),
-                    TextColumn::make('ru')
-                        ->formatStateUsing(fn ($record): string => !empty($record->ru['title']) ? '✓ ru' : '— ru')
-                        ->color(fn ($record): string => !empty($record->ru['title']) ? 'success' : 'gray')
-                        ->badge(),
-                    TextColumn::make('ky')
-                        ->formatStateUsing(fn ($record): string => !empty($record->ky['title']) ? '✓ ky' : '— ky')
-                        ->color(fn ($record): string => !empty($record->ky['title']) ? 'success' : 'gray')
-                        ->badge(),
                 ]),
             ])
             ->actions([

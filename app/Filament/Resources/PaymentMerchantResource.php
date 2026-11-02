@@ -25,6 +25,7 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ReplicateAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -216,30 +217,34 @@ class PaymentMerchantResource extends Resource
                         ->label(__('admin.fields.title'))
                         ->weight(FontWeight::Bold)
                         ->size('lg'),
-                    TextColumn::make('provider.name')
-                        ->label(__('admin.payment_fields.provider'))
-                        ->badge()
-                        ->color('warning'),
-                    TextColumn::make('theme_slug')
-                        ->label(__('admin.payment_fields.theme'))
-                        ->badge()
-                        ->color(fn (string $state): string => $state === PaymentMerchant::ANY_THEME ? 'gray' : 'success')
-                        ->formatStateUsing(fn (string $state): string => $state === PaymentMerchant::ANY_THEME
-                            ? __('admin.payment_fields.wildcard_any_theme')
-                            : $state),
-                    TextColumn::make('mode')
-                        ->badge()
-                        ->color(fn (string $state): string => $state === 'test' ? 'warning' : 'success')
-                        ->formatStateUsing(fn (string $state): string => $state === 'test'
-                            ? __('admin.payment_fields.mode_test')
-                            : __('admin.payment_fields.mode_live')),
+                    // Badges live in one horizontal row right under the title.
+                    Split::make([
+                        TextColumn::make('provider.name')
+                            ->label(__('admin.payment_fields.provider'))
+                            ->badge()
+                            ->color('warning'),
+                        TextColumn::make('theme_slug')
+                            ->label(__('admin.payment_fields.theme'))
+                            ->badge()
+                            ->color(fn (string $state): string => $state === PaymentMerchant::ANY_THEME ? 'gray' : 'success')
+                            ->formatStateUsing(fn (string $state): string => $state === PaymentMerchant::ANY_THEME
+                                ? __('admin.payment_fields.wildcard_any_theme')
+                                : $state),
+                        TextColumn::make('mode')
+                            ->label(__('admin.fields.mode'))
+                            ->badge()
+                            ->color(fn (string $state): string => $state === 'test' ? 'warning' : 'success')
+                            ->formatStateUsing(fn (string $state): string => $state === 'test'
+                                ? __('admin.payment_fields.mode_test')
+                                : __('admin.payment_fields.mode_live')),
+                        IconColumn::make('is_active')
+                            ->label(__('admin.payment_fields.is_active'))
+                            ->boolean(),
+                    ]),
                     TextColumn::make('host')
                         ->label(__('admin.payment_fields.host'))
                         ->copyable()
                         ->placeholder('—'),
-                    IconColumn::make('is_active')
-                        ->label(__('admin.payment_fields.is_active'))
-                        ->boolean(),
                 ]),
             ])
             ->actions([
