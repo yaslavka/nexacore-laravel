@@ -14,6 +14,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Alignment;
@@ -88,6 +89,7 @@ class PaymentMerchantResource extends Resource
                             ->label(__('admin.payment_fields.provider'))
                             ->relationship('provider', 'name')
                             ->options(fn () => PaymentProvider::query()->active()->orderBy('sort_order')->pluck('name', 'id'))
+                            ->live()
                             ->required()
                             ->searchable(),
                         Select::make('theme_slug')
@@ -116,7 +118,9 @@ class PaymentMerchantResource extends Resource
                     Grid::make(2)->schema([
                         TextInput::make('host')
                             ->label(__('admin.payment_fields.host'))
-                            ->default(fn (PaymentMerchant $record) => $record->host ?: config('payments.payler.host'))
+                            // $record is null on the create page — fall back
+                            // to the module default host instead of crashing.
+                            ->default(fn (?PaymentMerchant $record) => $record?->host ?: config('payments.payler.host'))
                             ->required()
                             ->maxLength(160)
                             ->helperText(__('admin.payment_fields.host_hint')),
@@ -134,7 +138,9 @@ class PaymentMerchantResource extends Resource
                             ->revealable()
                             ->maxLength(200)
                             ->helperText(__('admin.payment_fields.key_hint'))
-                            ->required(fn (PaymentMerchant $record) => $record->provider?->driver === 'payler'),
+                            // Depends on the selected provider (not $record):
+                            // works identically on the create and edit pages.
+                            ->required(fn (Get $get): bool => PaymentProvider::find($get('payment_provider_id'))?->driver === 'payler'),
                         TextInput::make('terminal_secret')
                             ->label(__('admin.payment_fields.terminal_secret'))
                             ->password()
