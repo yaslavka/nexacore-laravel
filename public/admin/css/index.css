@@ -223,3 +223,220 @@ html ::-webkit-scrollbar-thumb:hover {
         0 0 0 1px var(--nc-card-ring),
         0 24px 60px -30px rgb(0 0 0 / 1) !important;
 }
+
+/* ------------------------------------------------------------------ */
+/* 11. Theme selection accordion (ThemeSettings page)                  */
+/* ------------------------------------------------------------------ */
+
+.nc-theme-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Every theme = a card identical to the record cards. */
+.nc-theme-item {
+    position: relative;
+    border-radius: var(--nc-card-radius);
+    background: linear-gradient(
+        165deg,
+        var(--nc-card-bg-top),
+        var(--nc-card-bg-bottom)
+    );
+    box-shadow:
+        0 0 0 1px var(--nc-card-ring),
+        0 16px 36px -26px rgb(0 0 0 / 0.95);
+    transition: box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+/* The theme that is really live on the site. */
+.nc-theme-item.is-live {
+    box-shadow:
+        0 0 0 1px rgb(var(--nc-yellow) / 0.4),
+        0 16px 36px -26px rgb(0 0 0 / 0.95);
+}
+
+/* The theme selected by the radio — expanded and highlighted. */
+.nc-theme-item.is-open {
+    box-shadow:
+        0 0 0 1px var(--nc-card-ring-hover),
+        0 20px 48px -22px rgb(var(--nc-amber) / 0.4),
+        0 16px 36px -26px rgb(0 0 0 / 1);
+}
+
+.nc-theme-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Fully custom radio — Filament's global CSS makes browsers ignore
+   accent-color, so paint the yellow dot ourselves. */
+.nc-theme-radio {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    border-radius: 9999px;
+    border: 2px solid rgb(var(--nc-yellow) / 0.45);
+    background: transparent;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: border-color 0.15s ease;
+}
+
+.nc-theme-radio::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 9999px;
+    transform: scale(0);
+    transition: transform 0.15s ease;
+    background: rgb(var(--nc-yellow));
+}
+
+.nc-theme-radio:hover {
+    border-color: rgb(var(--nc-yellow) / 0.75);
+}
+
+.nc-theme-radio:checked {
+    border-color: rgb(var(--nc-yellow));
+}
+
+.nc-theme-radio:checked::before {
+    transform: scale(1);
+}
+
+.nc-theme-name {
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: rgb(255 255 255 / 0.95);
+}
+
+.nc-theme-badge {
+    flex: 0 0 auto;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--nc-ink);
+    background: rgb(var(--nc-yellow) / 0.92);
+    border-radius: 9999px;
+    padding: 0.15rem 0.55rem;
+}
+
+.nc-theme-version {
+    margin-left: auto;
+    flex: 0 0 auto;
+    font-size: 0.78rem;
+    color: rgb(var(--nc-yellow) / 0.65);
+}
+
+.nc-theme-chevron {
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    color: rgb(var(--nc-yellow) / 0.55);
+    transition: transform 0.2s ease;
+}
+
+.nc-theme-item.is-open .nc-theme-chevron {
+    transform: rotate(180deg);
+}
+
+/* Expanded body — description + meta grid. */
+.nc-theme-body {
+    padding: 0.9rem 1.1rem 1.1rem;
+    border-top: 1px dashed rgb(var(--nc-amber) / 0.18);
+    display: grid;
+    gap: 0.65rem;
+}
+
+.nc-theme-body[hidden] {
+    display: none;
+}
+
+.nc-theme-desc {
+    margin: 0;
+    color: rgb(255 255 255 / 0.72);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.nc-theme-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.6rem 1rem;
+    margin: 0;
+}
+
+.nc-theme-meta-grid dt {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--nc-yellow) / 0.6);
+}
+
+.nc-theme-meta-grid dd {
+    margin: 0.1rem 0 0;
+    font-size: 0.88rem;
+    color: rgb(255 255 255 / 0.85);
+}
+
+.nc-theme-meta-grid code {
+    color: rgb(var(--nc-yellow) / 0.9);
+    background: rgb(var(--nc-amber) / 0.08);
+    border-radius: 0.35rem;
+    padding: 0.05rem 0.35rem;
+}
+
+/* "How it works" — native <details> accordion. */
+.nc-theme-how {
+    margin-top: 1.25rem;
+    border-radius: 0.75rem;
+    background: rgb(20 19 9 / 0.6);
+    box-shadow: 0 0 0 1px rgb(var(--nc-amber) / 0.14);
+}
+
+.nc-theme-how summary {
+    cursor: pointer;
+    padding: 0.9rem 1.1rem;
+    font-weight: 600;
+    color: rgb(255 255 255 / 0.9);
+    list-style: none;
+}
+
+.nc-theme-how summary::before {
+    content: "▸";
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: rgb(var(--nc-yellow) / 0.7);
+    transition: transform 0.2s ease;
+}
+
+.nc-theme-how[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.nc-theme-how-body {
+    padding: 0 1.1rem 1rem;
+    display: grid;
+    gap: 0.5rem;
+    color: rgb(255 255 255 / 0.72);
+    font-size: 0.88rem;
+}
+
+.nc-theme-how-body code {
+    color: rgb(var(--nc-yellow) / 0.9);
+    background: rgb(var(--nc-amber) / 0.08);
+    border-radius: 0.35rem;
+    padding: 0.05rem 0.35rem;
+}

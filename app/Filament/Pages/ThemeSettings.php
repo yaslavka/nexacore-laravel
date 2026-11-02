@@ -3,14 +3,9 @@
 namespace App\Filament\Pages;
 
 use App\Models\AuditEvent;
-use App\Support\Themes\Theme;
 use App\Support\Themes\ThemeManager;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Illuminate\Support\HtmlString;
 
 class ThemeSettings extends Page
 {
@@ -18,7 +13,14 @@ class ThemeSettings extends Page
 
     protected static string $view = 'filament.pages.theme-settings';
 
-    public ?array $data = [];
+    public static ?int $navigationSort = 0;
+
+    /**
+     * Currently selected (radio) theme slug. The accordion on the page is
+     * driven by this property: the selected theme is expanded, the rest
+     * are collapsed to just their names.
+     */
+    public string $activeTheme = '';
 
     public static function getNavigationGroup(): ?string
     {
@@ -30,11 +32,6 @@ class ThemeSettings extends Page
         return __('admin.pages.themes.nav');
     }
 
-    public static function getNavigationSort(): ?int
-    {
-        return 0;
-    }
-
     public function getTitle(): string
     {
         return __('admin.pages.themes.title');
@@ -42,66 +39,33 @@ class ThemeSettings extends Page
 
     public function mount(): void
     {
-        $this->form->fill([
-            'active_theme' => app(ThemeManager::class)->activeSlug(),
-        ]);
+        $this->activeTheme = app(ThemeManager::class)->activeSlug();
     }
 
-    public function form(Form $form): Form
+    /** Discovered themes for the accordion (slug => Theme). */
+    public function getThemesProperty(): array
     {
-        $manager = app(ThemeManager::class);
-        $themes = $manager->all();
+        return app(ThemeManager::class)->all();
+    }
 
-        return $form
-            ->schema([
-                Section::make(__('admin.pages.themes.installed'))
-                    ->description(new HtmlString(__('admin.pages.themes.description')))
-                    ->schema([
-                        Radio::make('active_theme')
-                            ->label(__('admin.pages.themes.active'))
-                            ->options(collect($themes)->mapWithKeys(
-                                fn (Theme $theme, string $slug) => [
-                                    $slug => $theme->name().'  ·  v'.$theme->version(),
-                                ]
-                            )->all())
-                            ->descriptions(collect($themes)->mapWithKeys(
-                                fn (Theme $theme, string $slug) => [
-                                    $slug => $theme->description()
-                                        .'  —  '.implode(' / ', array_map(strtoupper(...), $theme->locales())),
-                                ]
-                            )->all())
-                            ->columns(1)
-                            ->required()
-                            ->live(),
-                    ]),
+    /** Slug of the theme that is really live on the public site. */
+    public function getLiveThemeProperty(): string
+    {
+        return app(ThemeManager::class)->activeSlug();
+    }
 
-                Section::make(__('admin.pages.themes.how'))
-                    ->collapsible()
-                    ->collapsed()
-                    ->schema([
-                        \Filament\Forms\Components\Placeholder::make('themes_path')
-                            ->label(__('admin.pages.themes.path'))
-                            ->content(new HtmlString('<code>'.$manager->basePath().'</code>')),
-                        \Filament\Forms\Components\Placeholder::make('active_path')
-                            ->label(__('admin.pages.themes.resolved'))
-                            ->content(new HtmlString('<code>'.$manager->activeSlug().'</code> — themes/{slug}/views + themes/{slug}/public')),
-                        \Filament\Forms\Components\Placeholder::make('add_theme')
-                            ->label(__('admin.pages.themes.add'))
-                            ->content(new HtmlString(__('admin.pages.themes.add_hint'))),
-                    ])
-                    ->columns(1),
-            ])
-            ->statePath('data');
+    /** Base directory where themes are discovered from. */
+    public function getThemesPathProperty(): string
+    {
+        return app(ThemeManager::class)->basePath();
     }
 
     public function save(): void
     {
-        $data = $this->form->getState();
-
         $manager = app(ThemeManager::class);
 
         try {
-            $theme = $manager->setActive((string) $data['active_theme']);
+            $theme = $manager->setActive($this->activeTheme);
         } catch (\Throwable $e) {
             Notification::make()
                 ->title(__('admin.pages.themes.switch_failed'))
