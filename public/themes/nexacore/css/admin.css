@@ -1,0 +1,101 @@
+/* Workspace styles are scoped so the public site's type and spacing stay independent. */
+body.admin-route { background: #f5f7fb; font-size: 15px; line-height: 1.55; }
+.admin-route #footer, .admin-route .scroll-progress { display: none; }
+.admin-route #main { min-height: calc(100svh - 64px); }
+.admin-route .site-header { background: #fff; backdrop-filter: none; }
+.admin-header-inner { height: 64px; padding: 0 28px; display: flex; align-items: center; gap: 20px; }
+.admin-header-inner .brand { font-size: 22px; gap: 9px; }
+.admin-header-inner .brand-mark { scale: .85; width: 26px; }
+.workspace-label { border-left: 1px solid var(--line); padding-left: 20px; color: var(--muted); font-size: 14px; }
+.admin-website-link { margin-left: auto; gap: 8px; font-size: 13px; font-weight: 600; }
+.admin-route .admin-page { padding: 0; min-height: calc(100svh - 64px); }
+.admin-login-layout { min-height: calc(100svh - 64px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px; gap: 20px; }
+.admin-route .login-card { width: min(400px, 100%); max-width: none; margin: 0; padding: 28px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 8px 30px #123a6e06; text-align: left; color: var(--ink); }
+.admin-route .login-card > .category-icon { width: 40px; height: 40px; margin-bottom: 20px; }
+.admin-route .login-card h1 { font-size: 26px; letter-spacing: -.035em; margin: 0 0 8px; }
+.admin-route .login-card > p { font-size: 14px; margin: 0; }
+.admin-route #admin-login { margin-top: 24px; gap: 16px; }
+.admin-route .login-card > .form-hint { margin-top: 20px; font-size: 13px; text-align: center; }
+.admin-login-caption { color: var(--muted); font-size: 12px; margin: 0; }
+.admin-route label { font-size: 14px; text-align: left; gap: 6px; }
+.admin-route input:not([type=checkbox],[type=radio]), .admin-route select, .admin-route textarea { min-height: 44px; padding: 10px 12px; font-size: 16px; border-color: #c4cfdc; }
+.admin-route textarea { resize: vertical; }
+.admin-route .button { min-height: 44px; padding: 11px 16px; gap: 14px; font-size: 14px; }
+.admin-route .button:hover { transform: none; }
+.admin-route .text-button { min-height: 44px; gap: 9px; font-size: 14px; }
+.admin-route .form-error:empty { display: none; }
+.admin-workspace { display: grid; grid-template-columns: 216px minmax(0, 1fr); min-height: calc(100svh - 64px); }
+.admin-sidebar { background: #fff; border-right: 1px solid var(--line); padding: 28px 16px 16px; display: flex; flex-direction: column; position: sticky; top: 64px; height: calc(100svh - 64px); overflow-y: auto; }
+.admin-nav-label { padding: 0 12px; margin-bottom: 14px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.admin-route .admin-tabs { display: flex; flex-direction: column; flex-wrap: nowrap; gap: 6px; }
+.admin-route .admin-tabs > button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 10px 12px; background: transparent; border: 0; border-radius: 8px; color: #52657c; font-size: 14px; font-weight: 500; text-align: left; line-height: 1.4; }
+.admin-route .admin-tabs > button .icon { width: 18px; height: 18px; }
+.admin-route .admin-tabs > button:hover { background: #f5f7fb; color: var(--navy); }
+.admin-route .admin-tabs > button.active { background: #eaf2fc; color: var(--navy); font-weight: 650; }
+.admin-sidebar-bottom { margin-top: auto; padding: 24px 12px 0; display: grid; gap: 6px; }
+.admin-role { color: var(--muted); display: flex; align-items: center; gap: 8px; font-size: 12px; text-transform: capitalize; }
+.admin-role .icon { width: 14px; height: 14px; }
+.admin-sidebar-bottom .text-button { justify-content: space-between; background: none; color: var(--ink); padding: 0; }
+.admin-main { min-width: 0; padding: 30px 36px 48px; }
+.admin-main > #admin-view { max-width: 1360px; margin: 0 auto; text-align: left; }
+.admin-route .admin-section-heading { margin: 0 0 24px; gap: 20px; align-items: center; }
+.admin-route .admin-section-heading h1, .admin-route #admin-view > h1 { font-size: 26px; letter-spacing: -.035em; }
+.admin-route .admin-section-heading p { font-size: 14px; margin-top: 8px; }
+.admin-route .admin-downloads { gap: 12px; flex-direction: row; align-items: center; }
+.admin-route .admin-downloads a { white-space: nowrap; font-size: 13px; }
+.admin-route .count-badge { font-size: 13px; padding: 3px 8px; }
+.admin-route .table-scroll { background: #fff; }
+.admin-route table { font-size: 14px; min-width: 940px; }
+.admin-route th:nth-child(2) { min-width: 180px; }
+.admin-route th:nth-child(3) { min-width: 280px; }
+.admin-route td:last-child { min-width: 180px; }
+.admin-route th { background: #f9fbfd; padding: 12px 16px; font-size: 12px; color: #52657c; }
+.admin-route td { padding: 16px; vertical-align: top; }
+.admin-route td p { max-width: 460px; font-size: 14px; overflow-wrap: anywhere; }
+.admin-route td a, .admin-route td strong { overflow-wrap: anywhere; }
+.admin-route td small { font-size: 12px; }
+.admin-route .admin-service-picker { max-width: 780px; margin-bottom: 20px; }
+.admin-route .editor-form { width: 100%; max-width: 780px; padding: 24px; background: #fff; gap: 18px; }
+.admin-route .form-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.admin-route .package-edit-row { padding: 18px; background: #f8fafc; }
+.admin-route .audit-list { margin-top: 20px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 0 20px; }
+.admin-route .audit-list > div { padding: 14px 0; gap: 20px; }
+.admin-route .audit-list > div:last-child { border-bottom: 0; }
+.admin-route .audit-list time, .admin-route .audit-list strong, .admin-route .audit-list span { font-size: 13px; }
+.admin-route .empty-state { padding: 50px 24px; border: 1px dashed #c4cfdc; border-radius: 12px; background: #fff; }
+.admin-route .empty-state h2 { font-size: 22px; }
+.admin-route .empty-state p { font-size: 14px; }
+.admin-access-error { padding: 32px 20px; }
+@media (max-width: 1100px) {
+  .admin-main { padding: 24px; }
+  .admin-route .admin-section-heading { align-items: flex-start; flex-direction: column; gap: 16px; }
+}
+@media (max-width: 900px) {
+  .admin-workspace { display: block; }
+  .admin-sidebar { position: static; height: auto; padding: 12px 20px; border-right: 0; border-bottom: 1px solid var(--line); gap: 8px; }
+  .admin-nav-label { display: none; }
+  .admin-route .admin-tabs { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+  .admin-route .admin-tabs > button { width: auto; padding: 10px 12px; }
+  .admin-sidebar-bottom { margin: 0; padding: 4px 12px 0; display: flex; align-items: center; justify-content: space-between; }
+  .admin-sidebar-bottom .text-button { gap: 10px; }
+}
+@media (max-width: 600px) {
+  .admin-header-inner { padding: 0 16px; gap: 12px; }
+  .workspace-label { display: none; }
+  .admin-header-inner .brand { font-size: 20px; }
+  .admin-route .admin-website-link { font-size: 12px; }
+  .admin-login-layout { padding: 24px 16px; gap: 16px; }
+  .admin-route .login-card { padding: 24px; }
+  .admin-main { padding: 24px 16px; }
+  .admin-sidebar { padding: 10px 12px; }
+  .admin-route .admin-tabs > button { font-size: 13px; padding: 10px; gap: 7px; }
+  .admin-route .admin-tabs > button .icon { width: 16px; height: 16px; }
+  .admin-route .admin-section-heading h1, .admin-route #admin-view > h1 { font-size: 24px; }
+  .admin-route .admin-downloads { flex-wrap: wrap; gap: 8px 16px; }
+  .admin-route .editor-form { padding: 18px; }
+  .admin-route .form-row { grid-template-columns: minmax(0, 1fr); }
+  .admin-route .package-edit-row { padding: 14px; }
+  .admin-route .audit-list { padding: 0 16px; }
+  .admin-route .audit-list > div { gap: 6px; flex-wrap: wrap; }
+  .admin-route .audit-list time { min-width: 100%; }
+}

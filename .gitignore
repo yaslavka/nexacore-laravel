@@ -23,5 +23,5 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
-# Published theme asset links (generated)
-/public/themes
+# Runtime signature files created by ThemeManager::publishAssets()
+/public/themes/**/.theme-published
