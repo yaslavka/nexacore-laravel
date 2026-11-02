@@ -440,3 +440,206 @@ html ::-webkit-scrollbar-thumb:hover {
     border-radius: 0.35rem;
     padding: 0.05rem 0.35rem;
 }
+
+/* ------------------------------------------------------------------ */
+/* 12. API documentation page (ApiDocs)                                */
+/* ------------------------------------------------------------------ */
+
+.nc-api {
+    display: grid;
+    gap: 1rem;
+}
+
+.nc-api-intro {
+    color: rgb(255 255 255 / 0.75);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.nc-api-card {
+    border-radius: var(--nc-card-radius);
+    background: linear-gradient(
+        165deg,
+        var(--nc-card-bg-top),
+        var(--nc-card-bg-bottom)
+    );
+    box-shadow:
+        0 0 0 1px var(--nc-card-ring),
+        0 16px 36px -26px rgb(0 0 0 / 0.95);
+    padding: 1.1rem 1.2rem 1.2rem;
+}
+
+.nc-api-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.nc-api-method {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    border-radius: 0.45rem;
+    padding: 0.3rem 0.6rem;
+}
+
+.nc-api-method-GET {
+    color: rgb(var(--nc-yellow));
+    background: rgb(var(--nc-amber) / 0.12);
+    box-shadow: inset 0 0 0 1px rgb(var(--nc-amber) / 0.4);
+}
+
+.nc-api-method-POST {
+    color: var(--nc-ink);
+    background: rgb(var(--nc-yellow) / 0.92);
+}
+
+.nc-api-path {
+    font-size: 0.82rem;
+    color: rgb(var(--nc-yellow) / 0.95);
+    background: rgb(var(--nc-amber) / 0.08);
+    border-radius: 0.45rem;
+    padding: 0.3rem 0.55rem;
+    word-break: break-all;
+}
+
+.nc-api-auth {
+    margin-left: auto;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    padding: 0.2rem 0.6rem;
+}
+
+.nc-api-auth-none {
+    color: rgb(134 239 172);
+    background: rgb(34 197 94 / 0.1);
+    box-shadow: inset 0 0 0 1px rgb(34 197 94 / 0.35);
+}
+
+.nc-api-auth-api_key {
+    color: var(--nc-ink);
+    background: rgb(var(--nc-yellow) / 0.85);
+}
+
+.nc-api-auth-internal {
+    color: rgb(253 186 116);
+    background: rgb(249 115 22 / 0.1);
+    box-shadow: inset 0 0 0 1px rgb(249 115 22 / 0.4);
+}
+
+.nc-api-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgb(255 255 255 / 0.95);
+    margin: 0 0 0.3rem;
+}
+
+.nc-api-desc {
+    color: rgb(255 255 255 / 0.72);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 0 0 0.9rem;
+}
+
+.nc-api-rules {
+    margin: 0;
+    padding-inline-start: 1.1rem;
+    display: grid;
+    gap: 0.4rem;
+    color: rgb(255 255 255 / 0.78);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.nc-api-table-scroll {
+    overflow-x: auto;
+    border-radius: 0.6rem;
+    box-shadow: inset 0 0 0 1px rgb(var(--nc-amber) / 0.14);
+}
+
+.nc-api-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    min-width: 520px;
+}
+
+.nc-api-table th {
+    text-align: start;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--nc-yellow) / 0.65);
+    background: rgb(var(--nc-amber) / 0.06);
+    padding: 0.55rem 0.75rem;
+    white-space: nowrap;
+}
+
+.nc-api-table td {
+    padding: 0.55rem 0.75rem;
+    border-top: 1px solid rgb(var(--nc-amber) / 0.1);
+    color: rgb(255 255 255 / 0.8);
+    vertical-align: top;
+}
+
+.nc-api-table code {
+    color: rgb(var(--nc-yellow) / 0.95);
+    background: rgb(var(--nc-amber) / 0.08);
+    border-radius: 0.35rem;
+    padding: 0.05rem 0.35rem;
+    white-space: nowrap;
+}
+
+.nc-api-req {
+    color: rgb(253 224 71);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.nc-api-opt {
+    color: rgb(255 255 255 / 0.45);
+    font-size: 0.75rem;
+}
+
+.nc-api-noparams {
+    color: rgb(255 255 255 / 0.5);
+    font-size: 0.82rem;
+    font-style: italic;
+}
+
+.nc-api-sub {
+    margin: 0.9rem 0 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--nc-yellow) / 0.65);
+}
+
+.nc-api-pre {
+    margin: 0;
+    border-radius: 0.6rem;
+    background: rgb(10 10 6 / 0.75);
+    box-shadow: inset 0 0 0 1px rgb(var(--nc-amber) / 0.14);
+    padding: 0.85rem 1rem;
+    overflow-x: auto;
+}
+
+.nc-api-pre code {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: rgb(254 249 195 / 0.9);
+}
+
+.nc-api-notes {
+    margin: 0.8rem 0 0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgb(253 224 71 / 0.85);
+}

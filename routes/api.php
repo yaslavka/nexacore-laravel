@@ -42,6 +42,7 @@ Route::post('/payments/{provider}/callback', GatewayCallbackController::class)
     ->where('provider', '[a-z0-9_-]+')
     ->middleware('throttle:120,1');
 
-// Completion endpoint of the simulated demo gateway page.
-Route::post('/payments/demo/complete', [DemoGatewayController::class, 'complete'])
+// Completion endpoint of the simulated demo gateway page (API variant).
+Route::post('/payments/{token}/demo/complete', [DemoGatewayController::class, 'complete'])
+    ->where('token', '[a-f0-9]{64}')
     ->middleware('throttle:30,1');
