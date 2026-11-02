@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Http\Middleware\SetAdminLocale;
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -12,11 +13,13 @@ use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook as RenderHook;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -31,15 +34,23 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('NexaCore Workspace')
             ->favicon(theme_asset('assets/favicon.svg', 'nexacore'))
             ->colors([
-                'primary' => Color::hex('#123A6E'),
-                'info' => Color::hex('#1687D9'),
+                'primary' => Color::Yellow,
+                'info' => Color::Zinc,
+                'warning' => Color::Amber,
             ])
-            ->darkMode(false)
+            // The admin is always dark: forced dark mode removes the
+            // light/dark switcher and applies the dark class server-side.
+            ->darkMode(true, isForced: true)
+            ->defaultThemeMode(ThemeMode::Dark)
+            ->renderHook(RenderHook::STYLES_BEFORE, fn (): HtmlString => new HtmlString(
+                '<link rel="stylesheet" href="'.asset('css/filament-admin.css').'">'
+            ))
             // Group names match resource::$navigationGroup; labels are
             // translated at render time for the active admin locale.
             ->navigationGroups([
                 NavigationGroup::make(fn (): string => __('admin.groups.orders')),
                 NavigationGroup::make(fn (): string => __('admin.groups.catalog')),
+                NavigationGroup::make(fn (): string => __('admin.groups.payments')),
                 NavigationGroup::make(fn (): string => __('admin.groups.system')),
             ])
             ->navigationItems([

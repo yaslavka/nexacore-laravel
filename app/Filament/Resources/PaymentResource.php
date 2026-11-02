@@ -9,10 +9,13 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
+use Filament\Support\Enums\FontWeight;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Support\Enums\FontWeight;
 
 use Filament\Tables\Table;
 
@@ -120,8 +123,20 @@ class PaymentResource extends Resource
                 ]),
             ])
             ->actions([
-                ViewAction::make(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                ])
+                    ->dropdown()
+                    ->iconButton()
+                    ->dropdownPlacement('bottom-end')
+                    ->tooltip(__('admin.actions.more')),
+                DeleteAction::make()
+                    ->button()
+                    ->outlined()
+                    ->color('danger')
+                    ->visible(fn (): bool => auth()->user()?->canManageSettings() ?? false),
             ])
+            ->actionsAlignment(Alignment::End)
             ->contentGrid([
                 'default' => 1,
                 'sm' => 2,

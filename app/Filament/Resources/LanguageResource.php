@@ -7,6 +7,9 @@ use App\Models\Language;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -120,9 +123,30 @@ class LanguageResource extends Resource
                 ]),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                ActionGroup::make([
+                    Action::make('make_default')
+                        ->label(__('admin.languages.make_default'))
+                        ->icon('heroicon-o-star')
+                        ->visible(fn (Language $record): bool => $record->is_active && (! $record->is_default))
+                        ->requiresConfirmation()
+                        ->action(function (Language $record): void {
+                            \Illuminate\Support\Facades\DB::table('languages')->update(['is_default' => false]);
+                            $record->forceFill(['is_default' => true])->save();
+
+                            \Filament\Notifications\Notification::make()
+                                ->title(__('admin.languages.default_changed'))
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                    ->dropdown()
+                    ->iconButton()
+                    ->dropdownPlacement('bottom-end')
+                    ->tooltip(__('admin.actions.more')),
+                EditAction::make()->button(),
+                DeleteAction::make()->button()->outlined()->color('danger'),
             ])
+            ->actionsAlignment(\Filament\Support\Enums\Alignment::End)
             ->emptyStateActions([
                 CreateAction::make(),
             ])

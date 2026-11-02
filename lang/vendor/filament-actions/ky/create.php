@@ -1,23 +1,37 @@
 <?php
 
 return [
+
     'single' => [
+
         'label' => 'Түзүү',
+
         'modal' => [
+
             'heading' => ':label түзүү',
+
             'actions' => [
+
                 'create' => [
                     'label' => 'Түзүү',
                 ],
+
                 'create_another' => [
-                    'label' => 'Түзүп, дагы бирин түзүү',
+                    'label' => 'Дагы бирин түзүү жана түзөтүү',
                 ],
+
             ],
+
         ],
+
         'notifications' => [
+
             'created' => [
                 'title' => 'Түзүлдү',
             ],
+
         ],
+
     ],
+
 ];

@@ -1,0 +1,112 @@
+/*
+ * NexaCore Workspace — permanent dark admin theme with yellow accents.
+ * Loaded on every Filament panel page via a render hook (AdminPanelProvider).
+ * The panel itself is configured with primary => yellow and
+ * defaultThemeMode(dark); this stylesheet adds the final polish.
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Always dark                                                      */
+/* ------------------------------------------------------------------ */
+
+/* Hide the light/dark switcher — the admin is always dark. */
+.fi-theme-switcher {
+    display: none !important;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Yellow accents on record cards                                   */
+/* ------------------------------------------------------------------ */
+
+/* Yellow top edge for every card in the content grid. */
+.fi-ta-content-grid > .fi-ta-record {
+    border-top: 2px solid rgb(250 204 21 / 0.55);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+}
+
+/* Yellow glow on hover. */
+.fi-ta-content-grid > .fi-ta-record:hover {
+    box-shadow:
+        0 0 0 1px rgb(250 204 21 / 0.35),
+        0 12px 32px -16px rgb(250 204 21 / 0.4);
+}
+
+/* Card action buttons row: keep it tight and right-aligned. */
+.fi-ta-content-grid > .fi-ta-record .fi-ta-actions {
+    gap: 0.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Contrast: dark text on filled yellow buttons / controls          */
+/*    (Filament renders white text on custom-500 backgrounds; on the  */
+/*    yellow palette that is unreadable, so flip it to dark brown.)   */
+/* ------------------------------------------------------------------ */
+
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"],
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] svg,
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] .fi-btn-icon,
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] .fi-checkbox-check,
+.dark .dark\:bg-custom-500[style*="--c-500:234, 179, 8"] .fi-btn-label {
+    color: rgb(41 30 3) !important;
+}
+
+.dark .dark\:bg-custom-600[style*="--c-600:202, 138, 4"],
+.dark .dark\:bg-custom-600[style*="--c-600:202, 138, 4"] svg,
+.dark .dark\:bg-custom-600[style*="--c-600:202, 138, 4"] .fi-btn-icon {
+    color: rgb(255 251 235) !important;
+}
+
+/* Yellow toggle / checkbox rings keep white internals readable. */
+
+/* ------------------------------------------------------------------ */
+/* 4. Yellow-tinted scrollbars                                         */
+/* ------------------------------------------------------------------ */
+
+.fi-layout ::-webkit-scrollbar,
+.fi-body ::-webkit-scrollbar,
+html ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.fi-layout ::-webkit-scrollbar-track,
+.fi-body ::-webkit-scrollbar-track,
+html ::-webkit-scrollbar-track {
+    background: rgb(23 23 23 / 0.6);
+}
+
+.fi-layout ::-webkit-scrollbar-thumb,
+.fi-body ::-webkit-scrollbar-thumb,
+html ::-webkit-scrollbar-thumb {
+    background: rgb(234 179 8 / 0.35);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.fi-layout ::-webkit-scrollbar-thumb:hover,
+.fi-body ::-webkit-scrollbar-thumb:hover,
+html ::-webkit-scrollbar-thumb:hover {
+    background: rgb(234 179 8 / 0.6);
+    background-clip: content-box;
+    border: 2px solid transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Small yellow touches on the login screen and topbar              */
+/* ------------------------------------------------------------------ */
+
+.fi-logo-filament-brand a:hover,
+.fi-topbar a:hover {
+    filter: drop-shadow(0 0 12px rgb(250 204 21 / 0.35));
+}
+
+/* Focus rings stay yellow. */
+.fi-input:focus,
+.fi-select:focus {
+    box-shadow: 0 0 0 2px rgb(250 204 21 / 0.35) !important;
+}

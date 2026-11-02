@@ -1,36 +1,61 @@
 <?php
 
 return [
+
     'single' => [
+
         'label' => 'Өчүрүү',
+
         'modal' => [
+
             'heading' => ':label өчүрүү',
+
             'actions' => [
+
                 'delete' => [
                     'label' => 'Өчүрүү',
                 ],
+
             ],
+
         ],
+
         'notifications' => [
+
             'deleted' => [
                 'title' => 'Өчүрүлдү',
             ],
+
         ],
+
     ],
+
     'multiple' => [
-        'label' => 'Тандагандарды өчүрүү',
+
+        'label' => 'Тандалгандарды өчүрүү',
+
         'modal' => [
-            'heading' => 'Тандаган :label өчүрүү',
+
+            'heading' => 'Тандалган :label өчүрүү',
+
             'actions' => [
+
                 'delete' => [
-                    'label' => 'Тандагандарды өчүрүү',
+                    'label' => 'Өчүрүү',
                 ],
+
             ],
+
         ],
+
         'notifications' => [
+
             'deleted' => [
                 'title' => 'Өчүрүлдү',
             ],
+
         ],
+
     ],
+
 ];

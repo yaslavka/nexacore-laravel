@@ -8,12 +8,15 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Support\Enums\FontWeight;
 
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -144,15 +147,27 @@ class OrderResource extends Resource
                     ->options(self::statusOptions()),
             ])
             ->actions([
-                ViewAction::make(),
-                EditAction::make(),
-                Action::make('invoice')
-                    ->label(__('admin.order_actions.payment_link'))
-                    ->icon('heroicon-o-banknotes')
-                    ->visible(fn (): bool => auth()->user()?->canManageSettings() ?? false)
-                    ->url(fn (Order $record): string => PaymentResource::getUrl('create', ['order' => $record->id]))
-                    ->color('gray'),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    Action::make('invoice')
+                        ->label(__('admin.order_actions.payment_link'))
+                        ->icon('heroicon-o-banknotes')
+                        ->visible(fn (): bool => auth()->user()?->canManageSettings() ?? false)
+                        ->url(fn (Order $record): string => PaymentResource::getUrl('create', ['order' => $record->id]))
+                        ->color('gray'),
+                ])
+                    ->dropdown()
+                    ->iconButton()
+                    ->dropdownPlacement('bottom-end')
+                    ->tooltip(__('admin.actions.more')),
+                EditAction::make()->button(),
+                DeleteAction::make()
+                    ->button()
+                    ->outlined()
+                    ->color('danger')
+                    ->visible(fn (): bool => auth()->user()?->canManageSettings() ?? false),
             ])
+            ->actionsAlignment(Alignment::End)
             ->contentGrid([
                 'default' => 1,
                 'sm' => 2,

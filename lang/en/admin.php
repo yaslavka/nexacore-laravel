@@ -4,11 +4,17 @@ return [
     'groups' => [
         'orders' => 'Orders',
         'catalog' => 'Catalog',
+        'payments' => 'Payments',
         'system' => 'System',
     ],
 
     'nav' => [
         'view_site' => 'View website',
+    ],
+
+    'actions' => [
+        'open_on_site' => 'Open on website',
+        'more' => 'More actions',
     ],
 
     'resources' => [
@@ -187,6 +193,53 @@ return [
         'created' => 'Language created',
         'updated' => 'Language updated',
         'deleted' => 'Language deleted',
+        'make_default' => 'Make default language',
+        'default_changed' => 'Default language updated',
+    
         'cannot_delete_default' => 'The default language cannot be deleted.',
+    ],
+
+    'payment_providers' => [
+        'created' => 'Payment system added',
+        'updated' => 'Payment system updated',
+        'deleted' => 'Payment system deleted',
+        'driver_hint' => 'Module class that implements the payment flow. New payment systems are added as modules without changing the core.',
+    ],
+
+    'payment_merchants' => [
+        'created' => 'Merchant added',
+        'updated' => 'Merchant updated',
+        'deleted' => 'Merchant deleted',
+        'unique_hint' => 'A merchant can be linked to each theme of the site.',
+    ],
+
+    'payment_fields' => [
+        'provider' => 'Payment system',
+        'driver' => 'Module (driver)',
+        'theme' => 'Site theme',
+        'theme_hint' => 'The merchant serves payments only for this theme. "*" — any theme.',
+        'wildcard_any_theme' => 'Any theme',
+        'host' => 'Gateway host',
+        'host_hint' => 'For example, secure.payler.com or sandbox.payler.com.',
+        'terminal_key' => 'Terminal key',
+        'key_hint' => 'Issued by the payment system for the merchant account.',
+        'terminal_secret' => 'Terminal secret',
+        'secret_hint' => 'Stored encrypted.',
+        'mode' => 'Mode',
+        'mode_live' => 'Live',
+        'mode_test' => 'Sandbox',
+        'currency' => 'Currency',
+        'operation_type' => 'Operation type',
+        'one_step' => 'One-step payment',
+        'two_step' => 'Two-step payment',
+        'lifetime' => 'Session lifetime (minutes)',
+        'is_active' => 'Active',
+        'callback_url' => 'Callback URL',
+        'callback_hint' => 'Set this URL in the payment system back office to receive payment notifications.',
+        'session_id' => 'Session ID',
+        'provider_order_id' => 'Order ID in payment system',
+        'customer' => 'Customer',
+        'payment_url' => 'Payment page URL',
+        'provider_status' => 'Status in payment system',
     ],
 ];

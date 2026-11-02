@@ -12,11 +12,14 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\FontWeight;
 
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Table;
 
 class ServiceResource extends Resource
@@ -140,8 +143,20 @@ class ServiceResource extends Resource
                 ]),
             ])
             ->actions([
-                EditAction::make(),
+                ActionGroup::make([
+                    Action::make('open')
+                        ->label(__('admin.actions.open_on_site'))
+                        ->icon('heroicon-o-arrow-top-right-on-square')
+                        ->url(fn (Service $record): string => url('/service/'.$record->id))
+                        ->openUrlInNewTab(),
+                ])
+                    ->dropdown()
+                    ->iconButton()
+                    ->dropdownPlacement('bottom-end')
+                    ->tooltip(__('admin.actions.more')),
+                EditAction::make()->button(),
             ])
+            ->actionsAlignment(Alignment::End)
             ->contentGrid([
                 'default' => 1,
                 'sm' => 2,

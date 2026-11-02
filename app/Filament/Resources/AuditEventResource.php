@@ -5,11 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AuditEventResource\Pages;
 use App\Models\AuditEvent;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
+use Filament\Support\Enums\FontWeight;
+use Filament\Support\Enums\TextSize;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Support\Enums\FontWeight;
-use Filament\Support\Enums\TextSize;
 use Filament\Tables\Table;
 
 class AuditEventResource extends Resource
@@ -83,8 +85,15 @@ class AuditEventResource extends Resource
                 ]),
             ])
             ->actions([
-                ViewAction::make(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                ])
+                    ->dropdown()
+                    ->iconButton()
+                    ->dropdownPlacement('bottom-end')
+                    ->tooltip(__('admin.actions.more')),
             ])
+            ->actionsAlignment(Alignment::End)
             ->contentGrid([
                 'default' => 1,
                 'sm' => 2,
