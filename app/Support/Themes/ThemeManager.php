@@ -121,6 +121,13 @@ class ThemeManager
     /**
      * Expose every theme's `public/` folder at `public/themes/{slug}`.
      *
+     * Published copies are kept in sync with the theme sources: on hosts
+     * where symlinks are not available (e.g. Windows without developer
+     * mode) the folder is a plain copy, so a `git pull` would otherwise
+     * leave stale JS/CSS in the web root. A `.theme-published` signature
+     * marker records the state of the source tree; when it no longer
+     * matches, the copy is refreshed on the next request.
+     *
      * @param  bool  $force  recreate existing links/copies
      * @return array<int, string> slugs that were (re)published now
      */
@@ -134,18 +141,104 @@ class ThemeManager
             }
 
             $target = rtrim((string) config('themes.public_path'), '/').DIRECTORY_SEPARATOR.$theme->slug;
+            $source = $theme->publicPath();
 
             if ($force && file_exists($target)) {
                 $this->deletePath($target);
             }
 
+            // A dangling symlink would break file_exists()/mkdir() below.
+            if (is_link($target) && ! file_exists($target)) {
+                @unlink($target);
+            }
+
+            if (is_link($target)) {
+                continue; // symlink target is always live
+            }
+
             if (! file_exists($target)) {
-                $this->linkOrCopy($theme->publicPath(), $target);
+                $this->linkOrCopy($source, $target);
+
+                if (! is_link($target)) {
+                    $this->storeSignature($target, $this->sourceSignature($source));
+                }
+
+                $published[] = $theme->slug;
+
+                continue;
+            }
+
+            // Existing copy: refresh it when the source tree changed.
+            $signature = $this->sourceSignature($source);
+
+            if ($signature !== null && $this->storedSignature($target) !== $signature) {
+                $this->deletePath($target);
+                $this->copyDirectory($source, $target);
+                $this->storeSignature($target, $signature);
                 $published[] = $theme->slug;
             }
         }
 
         return $published;
+    }
+
+    /**
+     * Cheap fingerprint of a theme's source asset tree (relative paths,
+     * file sizes and modification times).
+     */
+    protected function sourceSignature(string $source): ?string
+    {
+        if (! is_dir($source)) {
+            return null;
+        }
+
+        $parts = [];
+        $this->collectSignature($source, '', $parts);
+
+        return md5(implode('|', $parts));
+    }
+
+    protected function collectSignature(string $dir, string $prefix, array &$parts): void
+    {
+        foreach (scandir($dir) ?: [] as $item) {
+            if (in_array($item, ['.', '..'], true)) {
+                continue;
+            }
+
+            $path = $dir.DIRECTORY_SEPARATOR.$item;
+            $relative = $prefix === '' ? $item : $prefix.'/'.$item;
+
+            if (is_link($path)) {
+                continue;
+            }
+
+            if (is_dir($path)) {
+                $parts[] = $relative.'/';
+                $this->collectSignature($path, $relative, $parts);
+
+                continue;
+            }
+
+            $size = @filesize($path);
+            $mtime = @filemtime($path);
+            $parts[] = $relative.':'.($size === false ? '?' : $size).':'.($mtime === false ? '?' : $mtime);
+        }
+    }
+
+    protected function storedSignature(string $target): ?string
+    {
+        $content = @file_get_contents($target.DIRECTORY_SEPARATOR.'.theme-published');
+
+        return $content === false ? null : trim($content);
+    }
+
+    protected function storeSignature(string $target, ?string $signature): void
+    {
+        if ($signature === null) {
+            return;
+        }
+
+        @file_put_contents($target.DIRECTORY_SEPARATOR.'.theme-published', $signature);
     }
 
     /** Forget cached discovery (call after installing/removing themes at runtime). */

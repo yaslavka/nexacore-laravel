@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="{{ theme_asset('css/styles.css') }}?v=20261103-payflow">
   <link rel="stylesheet" href="{{ theme_asset('css/motion.css') }}">
   <link rel="stylesheet" href="{{ theme_asset('css/admin.css') }}?v=20261101-payler">
-  <script type="module" src="{{ theme_asset('js/app.js') }}?v=20261103-payflow"></script>
+  <script type="module" src="{{ theme_asset('js/app.js') }}?v=20261104-paysystem-modal"></script>
 </head>
 <body data-theme-base="{{ theme_asset('') }}" data-theme-slug="{{ $theme->slug }}">
   <div class="scroll-progress" aria-hidden="true"></div>
