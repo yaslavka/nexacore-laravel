@@ -9,6 +9,7 @@ use App\Models\Payment;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Str;
 
 class CreatePayment extends CreateRecord
 {
