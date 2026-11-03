@@ -16,6 +16,14 @@ return [
         'open_on_site' => 'Open on website',
         'more' => 'More actions',
         'replicate' => 'Duplicate',
+        'open_payment_page' => 'Open payment page',
+    ],
+
+    'notifications' => [
+        'payment_system_unavailable' => 'Selected payment system is not available',
+        'manual_order_message' => 'Order created automatically during payment link generation (:system).',
+        'payment_link_ready' => 'Payment link created',
+        'payment_link_ready_body' => 'Send the checkout page link to the client. The gateway session starts when the client proceeds to payment.',
     ],
 
     'resources' => [
@@ -133,6 +141,11 @@ return [
         'token' => 'Token',
         'amount' => 'Amount (USD)',
         'amount_helper' => 'The amount is agreed with the client before invoicing.',
+        'payment_system' => 'Payment system',
+        'payment_system_helper' => 'The link is generated for the selected payment system. Only active merchants are listed.',
+        'payment_purpose' => 'Payment purpose',
+        'payment_purpose_default' => 'Payment for NexaCore services',
+        'payment_purpose_helper' => 'Shown to the client on the payment page.',
         'mode' => 'Mode',
         'number' => '#',
         'order_no' => 'Order No.',

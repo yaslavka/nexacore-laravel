@@ -27,6 +27,14 @@ class ViewPayment extends ViewRecord
                     ->label('Checkout link')
                     ->state(fn ($record) => url('/checkout/'.$record->id))
                     ->copyable(),
+                TextEntry::make('payment_url')
+                    ->label('Gateway link')
+                    ->copyable()
+                    ->copyMessage('Gateway link copied')
+                    ->placeholder('—'),
+                TextEntry::make('client_email')
+                    ->label('Client email')
+                    ->state(fn ($record) => $record->payload['email'] ?? $record->order?->email ?? '—'),
             ])->columns(2),
         ]);
     }
