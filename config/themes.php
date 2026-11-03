@@ -22,8 +22,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | Each theme's `public/` folder is exposed through
-    | /themes/{slug}/... — either by symlink (fast, instant updates)
-    | or by copying the files (Windows / shared hosting).
+    | /themes/{slug}/... as a REAL copy of the files.
+    | Symlinks are never used: many Apache hosts (SymLinksIfOwnerMatch,
+    | FollowSymLinks disabled) answer 403 for every asset behind them.
     |
     */
 
@@ -31,21 +32,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Publish strategy
-    |--------------------------------------------------------------------------
-    |
-    | Supported: "symlink" (default) or "copy".
-    |
-    */
-
-    'publish' => env('THEMES_PUBLISH', 'symlink'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Auto publish on boot
     |--------------------------------------------------------------------------
     |
-    | When enabled, missing /themes/{slug} links are created automatically
+    | When enabled, missing /themes/{slug} copies are created automatically
     | on the first HTTP request after a theme is installed.
     |
     */

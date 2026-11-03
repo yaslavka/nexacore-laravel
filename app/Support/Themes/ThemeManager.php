@@ -3,7 +3,6 @@
 namespace App\Support\Themes;
 
 use App\Models\Setting;
-use Illuminate\Support\Facades\Log;
 use RuntimeException;
 use Throwable;
 
@@ -121,14 +120,16 @@ class ThemeManager
     /**
      * Expose every theme's `public/` folder at `public/themes/{slug}`.
      *
-     * Published copies are kept in sync with the theme sources: on hosts
-     * where symlinks are not available (e.g. Windows without developer
-     * mode) the folder is a plain copy, so a `git pull` would otherwise
-     * leave stale JS/CSS in the web root. A `.theme-published` signature
-     * marker records the state of the source tree; when it no longer
-     * matches, the copy is refreshed on the next request.
+     * Published assets are always REAL copies — symlinks are never used,
+     * because Apache hosts with SymLinksIfOwnerMatch (or FollowSymLinks
+     * disabled) answer 403 for every asset served through them.
      *
-     * @param  bool  $force  recreate existing links/copies
+     * Copies are kept in sync with the theme sources: a `git pull` would
+     * otherwise leave stale JS/CSS in the web root. A `.theme-published`
+     * signature marker records the state of the source tree; when it no
+     * longer matches, the copy is refreshed on the next request.
+     *
+     * @param  bool  $force  recreate existing copies
      * @return array<int, string> slugs that were (re)published now
      */
     public function publishAssets(bool $force = false): array
@@ -147,21 +148,15 @@ class ThemeManager
                 $this->deletePath($target);
             }
 
-            // A dangling symlink would break file_exists()/mkdir() below.
-            if (is_link($target) && ! file_exists($target)) {
+            // Legacy symlinks from older versions are removed and replaced
+            // with a real copy (Apache refuses to serve through them).
+            if (is_link($target)) {
                 @unlink($target);
             }
 
-            if (is_link($target)) {
-                continue; // symlink target is always live
-            }
-
             if (! file_exists($target)) {
-                $this->linkOrCopy($source, $target);
-
-                if (! is_link($target)) {
-                    $this->storeSignature($target, $this->sourceSignature($source));
-                }
+                $this->copyAssets($source, $target);
+                $this->storeSignature($target, $this->sourceSignature($source));
 
                 $published[] = $theme->slug;
 
@@ -257,25 +252,18 @@ class ThemeManager
         return null;
     }
 
-    protected function linkOrCopy(string $source, string $target): void
+    /**
+     * Publish the source tree as a plain, real copy. Symlinks are
+     * intentionally never used: Apache hosts with SymLinksIfOwnerMatch
+     * (or FollowSymLinks disabled) answer 403 for every request that
+     * goes through them, and Windows needs developer mode for them.
+     */
+    protected function copyAssets(string $source, string $target): void
     {
         $parent = dirname($target);
 
         if (! is_dir($parent)) {
             @mkdir($parent, 0775, true);
-        }
-
-        if ((string) config('themes.publish') === 'symlink') {
-            try {
-                if (@symlink($source, $target)) {
-                    return;
-                }
-            } catch (Throwable $e) {
-                Log::warning('Theme asset symlink failed, falling back to copy.', [
-                    'target' => $target,
-                    'error' => $e->getMessage(),
-                ]);
-            }
         }
 
         $this->copyDirectory($source, $target);

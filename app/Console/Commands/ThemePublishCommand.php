@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class ThemePublishCommand extends Command
 {
-    protected $signature = 'themes:publish {--force : Recreate existing links/copies}';
+    protected $signature = 'themes:publish {--force : Recreate existing copies}';
 
     protected $description = 'Expose every theme\'s public assets at /themes/{slug}';
 

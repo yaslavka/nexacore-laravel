@@ -42,11 +42,14 @@ class AdminPanelProvider extends PanelProvider
             // light/dark switcher and applies the dark class server-side.
             ->darkMode(true, isForced: true)
             ->defaultThemeMode(ThemeMode::Dark)
-            // The single admin stylesheet (public/admin/css/index.css).
+            // The single admin stylesheet (public/admin-assets/css/index.css).
+            // Kept OUT of public/admin/: that URI must hit the Filament
+            // panel route, but Apache serves a real directory instead of
+            // rewriting it to index.php (403 on shared hosts).
             // Loaded AFTER Filament's own styles so the overrides win the
             // cascade; never add <style> blocks in views — Filament drops them.
             ->renderHook(RenderHook::STYLES_AFTER, fn (): HtmlString => new HtmlString(
-                '<link rel="stylesheet" href="'.asset('admin/css/index.css').'">'
+                '<link rel="stylesheet" href="'.asset('admin-assets/css/index.css').'">'
             ))
             // Group names match resource::$navigationGroup; labels are
             // translated at render time for the active admin locale.
